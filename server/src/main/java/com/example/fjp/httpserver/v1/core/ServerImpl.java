@@ -77,9 +77,11 @@ public class ServerImpl {
 		// ServerSocket
 		try {
 			this.serverSocket = new ServerSocket();
-			this.bind(inetSocketAddress, backLog);
+			if (inetSocketAddress != null) {
+				this.bind(inetSocketAddress, backLog);
+				this.isBound = true;
+			}
 			this.isCreated = true;
-			this.isBound = true;
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -112,16 +114,13 @@ public class ServerImpl {
 	
 	public void start() {
 		if (this.isBound && !this.started && !this.finished) {
-			// todo
+			// 监听转发时需要使用线程池执行每次监听的任务
+			// 故线程池不存在时，使用默认的线程池执行任务
 			if (this.executor == null) {
 				this.executor = new ServerImpl.DefaultExecutor();
 			}
-			
-			//Thread var1 = new Thread(this.dispatcher);
-			//this.started = true;
-			//var1.start();
-			
-			bootstrapExecutor.submit(this.dispatcher);
+			// 启用监听及转发线程
+			bootstrapExecutor.execute(this.dispatcher);
 			this.started = true;
 		} else {
 			throw new IllegalStateException("server in wrong state");
@@ -157,9 +156,7 @@ public class ServerImpl {
 				isClosed = true;
 			}
 			
-			//this.selector.wakeup();
 			long var2 = System.currentTimeMillis() + (long) (seconds * 1000);
-			
 			while (System.currentTimeMillis() < var2) {
 				this.delay();
 				if (this.finished) {
@@ -256,8 +253,6 @@ public class ServerImpl {
 							Socket clientSocket = ServerImpl.this.serverSocket.accept();
 							this.handle(clientSocket);
 						}
-						
-						
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -379,7 +374,8 @@ public class ServerImpl {
 					stringBuilder.append("Content-Length: ").append(var3.length()).append("\r\n").append("Content-Type"
 							                                                                                     + ": "
 							                                                                                     +
-							                                                                                     "text" +
+							                                                                                     "text"
+							                                                                                     +
 							                                                                                     "/html\r" + "\n");
 				} else {
 					stringBuilder.append("Content-Length: 0\r\n");

@@ -2,71 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cefa1342-d80f-4d30-9bb4-85a662f383db" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/TestServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/Code.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpMethod.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/AbstractHttpServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/DefaultHttpServerProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/HttpServerImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/SimpleHttpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/SimpleHttpServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/SimpleHttpServerX.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/SimpleHttpServerX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/TestServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/common/HttpHeaders.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/common/HttpHeaders.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpHeaders.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/core/ContextList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/core/ContextList.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ContextList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/core/HttpContext.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/core/HttpContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/HttpContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/core/HttpContextImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/core/HttpContextImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/HttpContextImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/core/HttpExchange.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/core/HttpExchange.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/HttpExchange.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/core/ServerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/core/ServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/request/AbstractHttpHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/request/AbstractHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/request/AbstractHttpHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/request/DefaultHttpAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/request/DefaultHttpAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/request/DefaultHttpAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/request/HttpAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/request/HttpAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/request/HttpAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/request/HttpHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/request/HttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/request/HttpHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/request/HttpRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/request/HttpRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/request/HttpRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/request/HttpRequestParse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/request/HttpRequestParse.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/request/HttpRequestParse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/request/SimpleHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/request/SimpleHttpHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/response/HttpResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/response/HttpResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/response/HttpResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/response/HttpResponseBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/response/HttpResponseBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/response/HttpResponseBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v2/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v2/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v2/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v3/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v3/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v3/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/META-INF/server.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/AbstractHttpServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/DefaultHttpServerProvider.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/HttpServerImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/TestServer$TestHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/TestServer$TestHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/TestServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/TestServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/ContextList.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/ContextList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/HttpContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/HttpContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/HttpContextImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/HttpContextImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/HttpMethod.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/HttpStatus$Series.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/HttpStatus.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/ServerImpl$Exchange.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/ServerImpl$Exchange.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/ServerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/ServerImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/request/DefaultHttpAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/request/DefaultHttpAdapter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/request/HttpRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/request/HttpRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/request/HttpRequestParse.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/request/HttpRequestParse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/response/HttpResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/response/HttpResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/response/HttpResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/response/HttpResponseBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/AbstractHttpServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/DefaultHttpServerProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/HttpServerImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/core/HttpMethod.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/core/HttpStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/TestServer$TestHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/TestServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/common/HttpHeaders.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/ContextList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/HttpContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/HttpContextImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/HttpExchange.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/ServerImpl$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/ServerImpl$DefaultExecutor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/ServerImpl$Dispatcher.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/ServerImpl$Exchange.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/ServerImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/request/AbstractHttpHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/request/DefaultHttpAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/request/HttpAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/request/HttpHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/request/HttpRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/request/HttpRequestParse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/response/HttpResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/response/HttpResponseBuilder.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -101,39 +63,28 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/request/HttpRequestParse.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="80" column="28" selection-start-line="80" selection-start-column="28" selection-end-line="80" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/response/HttpResponse.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="511">
-              <caret line="45" column="31" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2177#2178#0" expanded="true" />
-                <element signature="e#2208#2209#0" expanded="true" />
-                <element signature="e#3144#3145#0" expanded="true" />
-                <element signature="e#3183#3184#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="31" column="25" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3627#3628#0" expanded="true" />
+                <element signature="e#6156#6157#0" expanded="true" />
+                <element signature="e#6246#6247#0" expanded="true" />
+                <element signature="e#6301#6302#0" expanded="true" />
+                <element signature="e#6324#6325#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpStatus.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="48">
-              <caret line="2" column="56" lean-forward="true" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
+              <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -172,7 +123,7 @@
         <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/SimpleHttpServerX.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="168">
-              <caret line="46" column="16" lean-forward="true" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
+              <caret line="46" column="16" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -219,6 +170,7 @@
       <find>queryString</find>
       <find>httpHeaders</find>
       <find>不存在</find>
+      <find>executor</find>
     </findStrings>
     <replaceStrings>
       <replace>path</replace>
@@ -277,6 +229,7 @@
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/request/HttpRequest.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/TestServer.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/SimpleHttpServerX.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java" />
       </list>
     </option>
   </component>
@@ -440,6 +393,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
@@ -506,18 +460,26 @@
       <updated>1594782709315</updated>
       <workItem from="1594782716484" duration="1837000" />
       <workItem from="1594797950972" duration="57789000" />
-      <workItem from="1595465983100" duration="10694000" />
+      <workItem from="1595465983100" duration="15335000" />
     </task>
+    <task id="LOCAL-00001" summary="v1 版本已基本实现功能，此处提交用以保存已注释文件，下次提交删除注释部分，并打磨不足之处">
+      <created>1595486149707</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1595486149707</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70320000" />
+    <option name="totallyTimeSpent" value="74961000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1940874" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.19794345" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -530,7 +492,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="FindBugs-IDEA" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.20027249" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.27520436" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32970026" />
       <window_info anchor="bottom" id="SonarLint" order="11" />
@@ -556,39 +518,13 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="v1 版本已基本实现功能，此处提交用以保存已注释文件，下次提交删除注释部分，并打磨不足之处" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1 版本已基本实现功能，此处提交用以保存已注释文件，下次提交删除注释部分，并打磨不足之处" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java</url>
-          <line>336</line>
-          <properties />
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java</url>
-          <line>332</line>
-          <properties />
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java</url>
-          <line>339</line>
-          <properties />
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java</url>
-          <line>338</line>
-          <properties />
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java</url>
-          <line>341</line>
-          <properties />
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java</url>
           <line>320</line>
@@ -622,7 +558,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java</url>
           <line>292</line>
-          <properties class="com.example.fjp.v1.core.ServerImpl.Exchange" method="run">
+          <properties class="com.example.fjp.httpserver.v1.core.ServerImpl.Exchange" method="run">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="21" />
@@ -630,7 +566,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java</url>
           <line>372</line>
-          <properties class="com.example.fjp.v1.core.ServerImpl.Exchange">
+          <properties class="com.example.fjp.httpserver.v1.core.ServerImpl.Exchange" method="sendReply">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="25" />
@@ -655,20 +591,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/jre/lib/rt.jar!/sun/net/httpserver/HttpConnection.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/jre/lib/rt.jar!/com/sun/net/httpserver/Headers.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="72" column="41" lean-forward="true" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/jre/lib/rt.jar!/sun/net/httpserver/HttpContextImpl.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="366">
@@ -942,18 +864,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="341" column="57" selection-start-line="341" selection-start-column="57" selection-end-line="341" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6159#6160#0" expanded="true" />
-            <element signature="e#6182#6183#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/jre/lib/rt.jar!/sun/net/httpserver/HttpExchangeImpl.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -1121,14 +1031,43 @@
     <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/SimpleHttpServerX.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
-          <caret line="46" column="16" lean-forward="true" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
+          <caret line="46" column="16" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpStatus.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
-          <caret line="2" column="56" lean-forward="true" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
+          <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/concurrent/ExecutorService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="263" column="14" selection-start-line="263" selection-start-column="14" selection-end-line="263" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/concurrent/Executor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="139" column="9" selection-start-line="139" selection-start-column="9" selection-end-line="139" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="31" column="25" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3627#3628#0" expanded="true" />
+            <element signature="e#6156#6157#0" expanded="true" />
+            <element signature="e#6246#6247#0" expanded="true" />
+            <element signature="e#6301#6302#0" expanded="true" />
+            <element signature="e#6324#6325#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
