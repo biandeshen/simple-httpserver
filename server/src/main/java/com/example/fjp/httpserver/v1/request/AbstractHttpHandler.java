@@ -1,6 +1,6 @@
-package com.example.fjp.v1.request;
+package com.example.fjp.httpserver.v1.request;
 
-import com.example.fjp.v1.response.HttpResponse;
+import com.example.fjp.httpserver.v1.response.HttpResponse;
 
 import java.io.IOException;
 

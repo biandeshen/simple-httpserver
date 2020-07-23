@@ -1,6 +1,6 @@
-package com.example.fjp.v1.request;
+package com.example.fjp.httpserver.v1.request;
 
-import com.example.fjp.v1.common.HttpHeaders;
+import com.example.fjp.httpserver.v1.common.HttpHeaders;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;
@@ -79,7 +79,6 @@ public class HttpRequestParse {
 			headers.put(readLineHeaders[0].trim(), readLineHeaders[1].trim());
 		}
 		httpRequest.setHttpHeaders(new HttpHeaders(headers));
-		
 	}
 	
 	/**
@@ -91,8 +90,33 @@ public class HttpRequestParse {
 	private static void parseRequestLine(BufferedReader bufferedReader, HttpRequest httpRequest) throws IOException {
 		String[] requestLines = StringUtils.split(bufferedReader.readLine(), " ");
 		assert requestLines.length == 3;
+		// 解析请求方法
 		httpRequest.setMethod(requestLines[0]);
-		httpRequest.setRequestURI(requestLines[1]);
+		// 解析查询字符串
+		parseQueryString(requestLines[1], httpRequest);
+		// 解析请求地址
+		httpRequest.setRequestURI(StringUtils.split(requestLines[1], "?")[0]);
+		// 解析请求协议
 		httpRequest.setProtocol(requestLines[2]);
+	}
+	
+	/**
+	 * 解析查询字符串
+	 *
+	 * @param requestURI
+	 */
+	private static void parseQueryString(String requestURI, HttpRequest httpRequest) {
+		if (StringUtils.isNotEmpty(requestURI)) {
+			Map<String, String> queryStringMap = new HashMap<String, String>(16);
+			String[] queryString = StringUtils.split(requestURI, "?");
+			if (queryString.length > 1) {
+				String[] queryStr = StringUtils.split(queryString[1], "&");
+				for (String qstr : queryStr) {
+					String[] split = StringUtils.split(qstr, "=");
+					queryStringMap.put(split[0].trim(), split[1].trim());
+				}
+			}
+			httpRequest.setParameters(queryStringMap);
+		}
 	}
 }

@@ -1,8 +1,7 @@
-package com.example.fjp.v1.core;
+package com.example.fjp.httpserver.v1.core;
 
 
-import com.example.fjp.v1.AbstractHttpServer;
-import com.example.fjp.v1.request.AbstractHttpHandler;
+import com.example.fjp.httpserver.v1.request.AbstractHttpHandler;
 
 import java.util.Map;
 

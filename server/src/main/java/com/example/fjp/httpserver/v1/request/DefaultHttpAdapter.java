@@ -1,9 +1,9 @@
-package com.example.fjp.v1.request;
+package com.example.fjp.httpserver.v1.request;
 
-import com.example.fjp.v1.core.HttpMethod;
-import com.example.fjp.v1.core.HttpStatus;
-import com.example.fjp.v1.response.HttpResponse;
-import com.example.fjp.v1.response.HttpResponseBuilder;
+import com.example.fjp.httpserver.v1.common.Code;
+import com.example.fjp.httpserver.v1.common.HttpMethod;
+import com.example.fjp.httpserver.v1.response.HttpResponse;
+import com.example.fjp.httpserver.v1.response.HttpResponseBuilder;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -41,13 +41,13 @@ public class DefaultHttpAdapter extends HttpAdapter {
 				printWriter.println(responseString);
 			} catch (Exception e) {
 				HttpResponse response = HttpResponseBuilder.build2Response(httpRequest, e.toString());
-				response.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-				response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
+				response.setCode(Code.HTTP_INTERNAL_ERROR);
+				response.setStatus(Code.msg(Code.HTTP_INTERNAL_ERROR));
 				printWriter.println(response.toString());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				socket.close();
 			} catch (IOException e) {

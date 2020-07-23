@@ -1,12 +1,12 @@
-package com.example.fjp.v1.core;
+package com.example.fjp.httpserver.v1.core;
 
 
-import com.example.fjp.v1.AbstractHttpServer;
-import com.example.fjp.v1.request.AbstractHttpHandler;
-import com.example.fjp.v1.request.HttpRequest;
-import com.example.fjp.v1.request.HttpRequestParse;
-import com.example.fjp.v1.response.HttpResponse;
-import com.example.fjp.v1.response.HttpResponseBuilder;
+import com.example.fjp.httpserver.v1.common.Code;
+import com.example.fjp.httpserver.v1.request.AbstractHttpHandler;
+import com.example.fjp.httpserver.v1.request.HttpRequest;
+import com.example.fjp.httpserver.v1.request.HttpRequestParse;
+import com.example.fjp.httpserver.v1.response.HttpResponse;
+import com.example.fjp.httpserver.v1.response.HttpResponseBuilder;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -282,7 +282,7 @@ public class ServerImpl {
 		// 请求
 		HttpRequest httpRequest = new HttpRequest();
 		// 响应
-		HttpResponse httpResponse;
+		HttpResponse httpResponse = new HttpResponse();
 		
 		Exchange(Socket clientSocket, String protocol) throws IOException {
 			this.clientSocket = clientSocket;
@@ -292,9 +292,10 @@ public class ServerImpl {
 		@Override
 		public void run() {
 			try {
-				printWriter = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
-				httpRequest = HttpRequestParse.parse2HttpRequest(clientSocket.getInputStream());
-				httpResponse = new HttpResponse();
+				httpResponse.setOutputStream(clientSocket.getOutputStream());
+				httpRequest.setInputStream(clientSocket.getInputStream());
+				printWriter = new PrintWriter(new OutputStreamWriter(httpResponse.getOutputStream()));
+				httpRequest = HttpRequestParse.parse2HttpRequest(httpRequest.getInputStream());
 				
 				if (httpRequest.getRequestURI() == null) {
 					this.clientSocket.close();
@@ -310,8 +311,8 @@ public class ServerImpl {
 				if (Stream.of("GET", "POST", "PUT", "DELETE", "HEAD").noneMatch(method::equals)) {
 					//	响应一个不支持的方法的提示
 					HttpResponse response = HttpResponseBuilder.build2Response(httpRequest, "不支持的请求方法!");
-					response.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-					response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
+					response.setCode(Code.HTTP_INTERNAL_ERROR);
+					response.setStatus(Code.msg(Code.HTTP_INTERNAL_ERROR));
 					printWriter.println(response);
 					System.err.println("error response: " + response);
 				}
@@ -337,11 +338,12 @@ public class ServerImpl {
 				// 返回响应结果
 				//printWriter.println(httpResponse);
 				//printWriter.flush();
-				sendReply(200, true, httpResponse.toString());
+				// todo 响应流内容的输出
+				sendReply(200, true, httpResponse.getResponseBody());
 			} catch (Exception e) {
 				HttpResponse response = HttpResponseBuilder.build2Response(httpRequest, e.toString());
-				response.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-				response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
+				response.setCode(Code.HTTP_INTERNAL_ERROR);
+				response.setStatus(Code.msg(Code.HTTP_INTERNAL_ERROR));
 				System.err.println("error response: " + response);
 				e.printStackTrace();
 			} finally {
@@ -356,8 +358,8 @@ public class ServerImpl {
 		void judgeHttpResponse(HttpResponse httpResponse) {
 			// 进行判空操作 即未设置状态码时，默认成功
 			if (httpResponse.getStatus() != null || httpResponse.getCode() == 0) {
-				httpResponse.setCode(200);
-				httpResponse.setStatus(HttpStatus.OK.getReasonPhrase());
+				httpResponse.setCode(Code.HTTP_OK);
+				httpResponse.setStatus(Code.msg(Code.HTTP_OK));
 			}
 		}
 		
@@ -370,26 +372,29 @@ public class ServerImpl {
 		// 重写 TODO
 		void sendReply(int httpCode, boolean var2, String var3) {
 			try {
-				StringBuilder var4 = new StringBuilder(512);
+				StringBuilder stringBuilder = new StringBuilder(512);
 				//var4.append("HTTP/1.1 ").append(httpCode).append(httpCode).append("\r\n");
-				var4.append("HTTP/1.1 ").append(httpCode).append(" ").append(HttpStatus.valueOf(httpCode).getReasonPhrase()).append("\r\n");
+				stringBuilder.append("HTTP/1.1 ").append(httpCode).append(" ").append(Code.msg(httpCode)).append("\r\n");
 				if (var3 != null && var3.length() != 0) {
-					var4.append("Content-Length: ").append(var3.length()).append("\r\n").append("Content-Type: " +
-							                                                                            "text/html\r" + "\n");
+					stringBuilder.append("Content-Length: ").append(var3.length()).append("\r\n").append("Content-Type"
+							                                                                                     + ": "
+							                                                                                     +
+							                                                                                     "text" +
+							                                                                                     "/html\r" + "\n");
 				} else {
-					var4.append("Content-Length: 0\r\n");
+					stringBuilder.append("Content-Length: 0\r\n");
 					var3 = "";
 				}
 				
 				if (var2) {
-					var4.append("Connection: close\r\n");
+					stringBuilder.append("Connection: close\r\n");
 				}
 				
-				var4.append("\r\n").append(var3);
-				String var5 = var4.toString();
+				stringBuilder.append("\r\n").append(var3);
+				String responseString = stringBuilder.toString();
 				//byte[] var6 = var5.getBytes("ISO8859_1");
 				//byte[] var6 = var5.getBytes("UTF-8");
-				this.printWriter.print(var5);
+				this.printWriter.print(responseString);
 				this.printWriter.flush();
 				if (var2) {
 					this.clientSocket.close();

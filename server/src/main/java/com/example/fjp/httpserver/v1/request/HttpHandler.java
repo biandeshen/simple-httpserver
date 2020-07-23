@@ -1,15 +1,4 @@
-package com.example.fjp.v1.request;
-
-import com.example.fjp.v1.core.HttpMethod;
-import com.example.fjp.v1.core.HttpStatus;
-import com.example.fjp.v1.response.HttpResponse;
-import com.example.fjp.v1.response.HttpResponseBuilder;
-
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.Socket;
-import java.util.stream.Stream;
+package com.example.fjp.httpserver.v1.request;
 
 /**
  * @FileName: HttpHandler

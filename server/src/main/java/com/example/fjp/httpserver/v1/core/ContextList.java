@@ -1,4 +1,4 @@
-package com.example.fjp.v1.core;
+package com.example.fjp.httpserver.v1.core;
 
 
 import java.util.Iterator;
@@ -38,7 +38,7 @@ public class ContextList {
 	synchronized HttpContextImpl findContext(String var1, String var2, boolean var3) {
 		var1 = var1.toLowerCase();
 		String var4 = "";
-		HttpContextImpl var5 = null;
+		HttpContextImpl httpContextImpl = null;
 		Iterator var6 = this.list.iterator();
 		
 		while (true) {
@@ -48,7 +48,7 @@ public class ContextList {
 				do {
 					do {
 						if (!var6.hasNext()) {
-							return var5;
+							return httpContextImpl;
 						}
 						
 						var7 = (HttpContextImpl) var6.next();
@@ -60,7 +60,7 @@ public class ContextList {
 			
 			if (var8.length() > var4.length()) {
 				var4 = var8;
-				var5 = var7;
+				httpContextImpl = var7;
 			}
 		}
 	}

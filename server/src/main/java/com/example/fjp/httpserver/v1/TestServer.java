@@ -1,9 +1,9 @@
-package com.example.fjp.v1;
+package com.example.fjp.httpserver.v1;
 
-import com.example.fjp.v1.request.AbstractHttpHandler;
-import com.example.fjp.v1.request.HttpRequest;
-import com.example.fjp.v1.response.HttpResponse;
-import com.sun.net.httpserver.HttpServer;
+import com.example.fjp.httpserver.v1.core.AbstractHttpServer;
+import com.example.fjp.httpserver.v1.request.AbstractHttpHandler;
+import com.example.fjp.httpserver.v1.request.HttpRequest;
+import com.example.fjp.httpserver.v1.response.HttpResponse;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -31,8 +31,8 @@ public class TestServer {
 	static class TestHandler extends AbstractHttpHandler {
 		
 		@Override
-		public void handle(HttpRequest httpRequest, HttpResponse httpResponse) throws IOException {
-			httpResponse.setResponseBody("测试用的处理器");
+		public void handle(HttpRequest httpRequest, HttpResponse httpResponse) {
+			httpResponse.setResponseBody("<hr>test handler</hr>");
 		}
 	}
 }

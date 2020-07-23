@@ -1,6 +1,7 @@
-package com.example.fjp.v1.common;
+package com.example.fjp.httpserver.v1.common;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +17,10 @@ import java.util.Map;
  * fjp           2020/7/16           版本号
  */
 public class HttpHeaders {
-	private Map<String, String> headers;
+	private Map<String, String> headers = new HashMap<>(8);
+	
+	public HttpHeaders() {
+	}
 	
 	public HttpHeaders(Map<String, String> headers) {
 		this.headers = headers;

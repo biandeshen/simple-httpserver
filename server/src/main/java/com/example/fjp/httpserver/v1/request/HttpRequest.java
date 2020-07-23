@@ -1,6 +1,10 @@
-package com.example.fjp.v1.request;
+package com.example.fjp.httpserver.v1.request;
 
-import com.example.fjp.v1.common.HttpHeaders;
+import com.example.fjp.httpserver.v1.common.HttpHeaders;
+
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @FileName: HttpRequest
@@ -15,7 +19,18 @@ import com.example.fjp.v1.common.HttpHeaders;
  * <author>          <time>          <version>
  * fjp           2020/7/16           版本号
  */
+@SuppressWarnings("ALL")
 public class HttpRequest {
+	private Map<String, String> parameters = new HashMap<>(8);
+	
+	void setParameters(Map<String, String> parameters) {
+		this.parameters = parameters;
+	}
+	
+	public Map<String, String> getParameters() {
+		return parameters;
+	}
+	
 	// GET /sss HTTP/1.1   -----> 1. 请求方法  2. 请求 URL  3. HTTP协议及版本
 	// Host: 10.10.12.109:9527
 	// Connection: keep-alive
@@ -61,13 +76,32 @@ public class HttpRequest {
 	/**
 	 * 请求报文的请求头
 	 */
-	private HttpHeaders httpHeaders;
+	private HttpHeaders httpHeaders = new HttpHeaders();
+	
+	/**
+	 * 请求字符串
+	 */
+	private String queryString;
 	
 	/**
 	 * 请求体
 	 */
 	private String requestBody;
 	
+	/**
+	 * 请求流
+	 */
+	private InputStream inputStream;
+	
+	
+	/**
+	 * 获取 请求方法
+	 *
+	 * @return method 请求方法
+	 */
+	public String getParameter(String name) {
+		return parameters.get(name);
+	}
 	
 	/**
 	 * 获取 请求方法
@@ -161,7 +195,7 @@ public class HttpRequest {
 	 * 		请求报文的请求头
 	 */
 	public void setHttpHeaders(HttpHeaders httpHeaders) {
-		this.httpHeaders = httpHeaders;
+		this.httpHeaders.getHeaders().putAll(httpHeaders.getHeaders());
 	}
 	
 	/**
@@ -181,5 +215,43 @@ public class HttpRequest {
 	 */
 	public void setRequestBody(String requestBody) {
 		this.requestBody = requestBody;
+	}
+	
+	/**
+	 * 获取 请求流
+	 *
+	 * @return inputStream 请求流
+	 */
+	public InputStream getInputStream() {
+		return this.inputStream;
+	}
+	
+	/**
+	 * 设置 请求流
+	 *
+	 * @param inputStream
+	 * 		请求流
+	 */
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
+	
+	/**
+	 * 获取 请求字符串
+	 *
+	 * @return queryString 请求字符串
+	 */
+	public String getQueryString() {
+		return this.queryString;
+	}
+	
+	/**
+	 * 设置 请求字符串
+	 *
+	 * @param queryString
+	 * 		请求字符串
+	 */
+	public void setQueryString(String queryString) {
+		this.queryString = queryString;
 	}
 }

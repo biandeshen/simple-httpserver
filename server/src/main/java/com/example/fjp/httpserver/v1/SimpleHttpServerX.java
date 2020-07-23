@@ -1,7 +1,7 @@
-//package com.example.fjp.v1;
+//package com.example.fjp.httpserver.v1;
 //
-//import com.example.fjp.v1.request.AbstractHttpHandler;
-//import com.example.fjp.v1.request.DefaultHttpAdapter;
+//import com.example.fjp.httpserver.v1.request.AbstractHttpHandler;
+//import com.example.fjp.httpserver.v1.request.DefaultHttpAdapter;
 //
 //import javax.annotation.PreDestroy;
 //import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.example.fjp.v1.core;
+package com.example.fjp.httpserver.v1.core;
 
 /**
  * @FileName: HttpExchange

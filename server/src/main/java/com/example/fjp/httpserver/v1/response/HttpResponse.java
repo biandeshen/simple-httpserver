@@ -1,7 +1,8 @@
-package com.example.fjp.v1.response;
+package com.example.fjp.httpserver.v1.response;
 
-import com.example.fjp.v1.common.HttpHeaders;
+import com.example.fjp.httpserver.v1.common.HttpHeaders;
 
+import java.io.OutputStream;
 import java.util.Map;
 
 /**
@@ -48,6 +49,11 @@ public class HttpResponse {
 	 * 响应体
 	 */
 	private String responseBody;
+	
+	/**
+	 * 响应流
+	 */
+	private OutputStream outputStream;
 	
 	
 	/**
@@ -170,5 +176,24 @@ public class HttpResponse {
 		// 响应体
 		sb.append(responseBody);
 		return sb.toString();
+	}
+	
+	/**
+	 * 获取 响应流
+	 *
+	 * @return outputStream 响应流
+	 */
+	public OutputStream getOutputStream() {
+		return this.outputStream;
+	}
+	
+	/**
+	 * 设置 响应流
+	 *
+	 * @param outputStream
+	 * 		响应流
+	 */
+	public void setOutputStream(OutputStream outputStream) {
+		this.outputStream = outputStream;
 	}
 }

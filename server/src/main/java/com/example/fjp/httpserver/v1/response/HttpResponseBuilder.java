@@ -1,8 +1,8 @@
-package com.example.fjp.v1.response;
+package com.example.fjp.httpserver.v1.response;
 
-import com.example.fjp.v1.core.HttpStatus;
-import com.example.fjp.v1.common.HttpHeaders;
-import com.example.fjp.v1.request.HttpRequest;
+import com.example.fjp.httpserver.v1.common.Code;
+import com.example.fjp.httpserver.v1.common.HttpHeaders;
+import com.example.fjp.httpserver.v1.request.HttpRequest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -76,8 +76,8 @@ public class HttpResponseBuilder {
 	}
 	
 	private static void buildStatusLine(HttpRequest httpRequest, HttpResponse httpResponse) {
-		httpResponse.setCode(HttpStatus.OK.value());
-		httpResponse.setStatus(HttpStatus.OK.getReasonPhrase());
+		httpResponse.setCode(Code.HTTP_OK);
+		httpResponse.setStatus(Code.msg(Code.HTTP_OK));
 		httpResponse.setProtocol(httpRequest.getProtocol());
 	}
 	

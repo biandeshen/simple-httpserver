@@ -1,4 +1,4 @@
-package com.example.fjp.v1.request;
+package com.example.fjp.httpserver.v1.request;
 
 import java.net.Socket;
 
