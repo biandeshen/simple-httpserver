@@ -7,7 +7,7 @@
     <groupId>com.example.fjp</groupId>
     <artifactId>simple-httpserver</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <modules>
         <module>server</module>
         <module>client</module>

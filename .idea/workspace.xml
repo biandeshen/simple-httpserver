@@ -2,33 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cefa1342-d80f-4d30-9bb4-85a662f383db" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/AbstractHttpServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/DefaultHttpServerProvider.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/HttpServerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/core/HttpMethod.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/core/HttpStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/TestServer$TestHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/TestServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/common/HttpHeaders.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/ContextList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/HttpContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/HttpContextImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/HttpExchange.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/ServerImpl$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/ServerImpl$DefaultExecutor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/ServerImpl$Dispatcher.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/ServerImpl$Exchange.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/core/ServerImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/request/AbstractHttpHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/request/DefaultHttpAdapter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/request/HttpAdapter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/request/HttpHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/request/HttpRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/request/HttpRequestParse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/response/HttpResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/fjp/v1/response/HttpResponseBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/SimpleHttpServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/SimpleHttpServerX.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/request/SimpleHttpHandler.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -55,19 +33,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/request/SimpleHttpHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="52" column="2" selection-start-line="52" selection-start-column="2" selection-end-line="52" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="168">
-              <caret line="31" column="25" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
+              <caret line="46" column="7" selection-start-line="46" selection-start-column="7" selection-end-line="46" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3627#3628#0" expanded="true" />
@@ -81,19 +50,30 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpStatus.java">
+        <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpMethod.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
+            <state relative-caret-position="54">
+              <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpMethod.java">
+        <entry file="file://$PROJECT_DIR$/server/pom.xml">
+          <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+            <state relative-caret-position="168">
+              <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -113,28 +93,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/Code.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1248">
+            <state relative-caret-position="-840">
               <caret line="52" column="10" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/SimpleHttpServerX.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="46" column="16" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/SimpleHttpServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#5753#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -186,7 +146,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/client/pom.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/SimpleServerSocket.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/SimpleHttpServer.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/HttpServer.java" />
@@ -194,7 +153,6 @@
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v2/README.md" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/README.md" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/request/Request.java" />
-        <option value="$PROJECT_DIR$/server/pom.xml" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/request/HttpMethod.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/request/HttpExchange.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/request/HttpAdapter.java" />
@@ -230,6 +188,8 @@
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/TestServer.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/SimpleHttpServerX.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java" />
+        <option value="$PROJECT_DIR$/server/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -337,6 +297,17 @@
               <item name="httpserver" type="462c0819:PsiDirectoryNode" />
               <item name="v1" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="simplehttpserver" type="b2602c69:ProjectViewProjectNode" />
+              <item name="simplehttpserver" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="httpserver" type="462c0819:PsiDirectoryNode" />
+              <item name="v1" type="462c0819:PsiDirectoryNode" />
+              <item name="request" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="simplehttpserver" type="b2602c69:ProjectViewProjectNode" />
@@ -460,7 +431,7 @@
       <updated>1594782709315</updated>
       <workItem from="1594782716484" duration="1837000" />
       <workItem from="1594797950972" duration="57789000" />
-      <workItem from="1595465983100" duration="15335000" />
+      <workItem from="1595465983100" duration="15582000" />
     </task>
     <task id="LOCAL-00001" summary="v1 版本已基本实现功能，此处提交用以保存已注释文件，下次提交删除注释部分，并打磨不足之处">
       <created>1595486149707</created>
@@ -469,17 +440,24 @@
       <option name="project" value="LOCAL" />
       <updated>1595486149707</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="v1 版本已基本实现功能，此处提交用以保存已注释文件，下次提交删除注释部分，并打磨不足之处">
+      <created>1595491714258</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1595491714258</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74961000" />
+    <option name="totallyTimeSpent" value="75208000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.19794345" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19794345" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -492,7 +470,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="FindBugs-IDEA" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.27520436" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.13351499" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32970026" />
       <window_info anchor="bottom" id="SonarLint" order="11" />
@@ -902,22 +880,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/response/HttpResponse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="511">
@@ -995,30 +957,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpHeaders.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/Code.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1248">
-          <caret line="52" column="10" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/SimpleHttpServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1059,7 +997,7 @@
     <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
-          <caret line="31" column="25" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
+          <caret line="46" column="7" selection-start-line="46" selection-start-column="7" selection-end-line="46" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3627#3628#0" expanded="true" />
@@ -1068,6 +1006,46 @@
             <element signature="e#6301#6302#0" expanded="true" />
             <element signature="e#6324#6325#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/Code.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-840">
+          <caret line="52" column="10" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpHeaders.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
         </state>
       </provider>
     </entry>
