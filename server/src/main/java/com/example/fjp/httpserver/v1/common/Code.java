@@ -4,11 +4,12 @@ package com.example.fjp.httpserver.v1.common;
  * @FileName: code
  * @Author: fjp
  * @Date: 2020/7/23 9:25
- * @Description:  HTTP 的各种状态码
+ * @Description: HTTP 的各种状态码
  * History:
  * <author>          <time>          <version>
  * fjp           2020/7/23           版本号
  */
+@SuppressWarnings("ALL")
 public class Code {
 	public static final int HTTP_CONTINUE = 100;
 	public static final int HTTP_OK = 200;
@@ -47,11 +48,11 @@ public class Code {
 	public static final int HTTP_GATEWAY_TIMEOUT = 504;
 	public static final int HTTP_VERSION = 505;
 	
-	Code() {
+	private Code() {
 	}
 	
-	public static String msg(int var0) {
-		switch (var0) {
+	public static String msg(int code) {
+		switch (code) {
 			case 100:
 				return " Continue";
 			case 200:

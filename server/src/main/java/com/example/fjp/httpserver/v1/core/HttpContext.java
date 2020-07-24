@@ -1,7 +1,7 @@
 package com.example.fjp.httpserver.v1.core;
 
 
-import com.example.fjp.httpserver.v1.request.AbstractHttpHandler;
+import com.example.fjp.httpserver.v1.request.HttpHandler;
 
 import java.util.Map;
 
@@ -18,9 +18,9 @@ public abstract class HttpContext {
 	protected HttpContext() {
 	}
 	
-	public abstract AbstractHttpHandler getHandler();
+	public abstract HttpHandler getHandler();
 	
-	public abstract void setHandler(AbstractHttpHandler handler);
+	public abstract void setHandler(HttpHandler handler);
 	
 	public abstract String getPath();
 	

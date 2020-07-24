@@ -4,6 +4,7 @@ import com.example.fjp.httpserver.v1.common.Code;
 import com.example.fjp.httpserver.v1.common.HttpHeaders;
 import com.example.fjp.httpserver.v1.request.HttpRequest;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 

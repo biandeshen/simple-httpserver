@@ -1,12 +1,16 @@
 package com.example.fjp.httpserver.v1.core;
 
 
+import com.example.fjp.httpserver.v1.common.CharsetLengthUtils;
 import com.example.fjp.httpserver.v1.common.Code;
-import com.example.fjp.httpserver.v1.request.AbstractHttpHandler;
+import com.example.fjp.httpserver.v1.config.GlobalConfig;
+import com.example.fjp.httpserver.v1.request.HttpHandler;
 import com.example.fjp.httpserver.v1.request.HttpRequest;
 import com.example.fjp.httpserver.v1.request.HttpRequestParse;
 import com.example.fjp.httpserver.v1.response.HttpResponse;
 import com.example.fjp.httpserver.v1.response.HttpResponseBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -14,9 +18,8 @@ import java.io.PrintWriter;
 import java.net.*;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
+import java.util.concurrent.ThreadPoolExecutor.AbortPolicy;
 import java.util.stream.Stream;
 
 /**
@@ -30,6 +33,8 @@ import java.util.stream.Stream;
  */
 @SuppressWarnings("ALL")
 public class ServerImpl {
+	private static final Logger logger = LoggerFactory.getLogger(ServerImpl.class);
+	
 	private String protocol;
 	private Executor executor;
 	private boolean https;
@@ -47,7 +52,10 @@ public class ServerImpl {
 	/**
 	 * bootstrapExecutor
 	 */
-	private static ExecutorService bootstrapExecutor = Executors.newSingleThreadExecutor();
+	private static ExecutorService bootstrapExecutor = new ThreadPoolExecutor(1, 1, Integer.MAX_VALUE,
+	                                                                          TimeUnit.SECONDS,
+	                                                                          new LinkedBlockingQueue<>(1024),
+	                                                                          new AbortPolicy());
 	
 	/**
 	 * 是否已经绑定端口号
@@ -83,15 +91,15 @@ public class ServerImpl {
 			}
 			this.isCreated = true;
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("serverImpl created failed: {}", e.toString());
 			System.exit(1);
 		}
 		//
 		this.dispatcher = new ServerImpl.Dispatcher();
 		//	Timer todo
 		//	event todo
-		//	日志 todo
-		System.out.println("HttpServer created  " + protocol + " " + inetSocketAddress);
+		logger.info("HttpServer created in protocol:{}  ip:{}  port:{}", protocol, inetSocketAddress.getAddress(),
+		            inetSocketAddress.getPort());
 		
 	}
 	
@@ -156,8 +164,8 @@ public class ServerImpl {
 				isClosed = true;
 			}
 			
-			long var2 = System.currentTimeMillis() + (long) (seconds * 1000);
-			while (System.currentTimeMillis() < var2) {
+			long delayTime = System.currentTimeMillis() + (long) (seconds * 1000);
+			while (System.currentTimeMillis() < delayTime) {
 				this.delay();
 				if (this.finished) {
 					break;
@@ -175,17 +183,16 @@ public class ServerImpl {
 		}
 	}
 	
-	public synchronized HttpContextImpl creatContext(String path, AbstractHttpHandler httpHandler) {
+	public synchronized HttpContextImpl creatContext(String path, HttpHandler httpHandler) {
 		if (httpHandler != null && path != null) {
 			HttpContextImpl httpContext = new HttpContextImpl(this.protocol, path, httpHandler, this);
 			this.contexts.add(httpContext);
-			// todo 日志
-			System.out.println("context created: " + path);
+			logger.info("context created in: {}:{}{}", this.getAddress().getAddress().getHostAddress(),
+			            this.getAddress().getPort(), path);
 			return httpContext;
 		} else {
 			throw new NullPointerException("null handler, or path parameter");
 		}
-		
 	}
 	
 	public HttpContextImpl createContext(String path) {
@@ -193,8 +200,8 @@ public class ServerImpl {
 			throw new NullPointerException("null path parameter");
 		} else {
 			HttpContextImpl httpContext = new HttpContextImpl(this.protocol, path, null, this);
-			// todo 日志
-			System.out.println("context created: " + path);
+			logger.info("context created in: {}:{}{}", this.getAddress().getAddress().getHostAddress(),
+			            this.getAddress().getPort(), path);
 			return httpContext;
 		}
 	}
@@ -204,9 +211,7 @@ public class ServerImpl {
 			throw new NullPointerException("null path parameter");
 		} else {
 			this.contexts.remove(this.protocol, path);
-			//this.logger.config("context removed: " + path);
-			// todo 日志
-			System.out.println("context removed: " + path);
+			logger.info("context removed: {}", path);
 		}
 	}
 	
@@ -215,9 +220,7 @@ public class ServerImpl {
 			throw new IllegalArgumentException("wrong HttpContext type");
 		} else {
 			this.contexts.remove((HttpContextImpl) httpContext);
-			//this.logger.config("context removed: " + var1.getPath());
-			// todo 日志
-			System.out.println("context removed: " + httpContext.getPath());
+			logger.info("context removed: {}", httpContext.getPath());
 		}
 	}
 	
@@ -270,7 +273,6 @@ public class ServerImpl {
 	private class Exchange implements Runnable {
 		Socket clientSocket;
 		String protocol;
-		//HttpContextImpl context;
 		HttpContextImpl ctx;
 		boolean rejected = false;
 		PrintWriter printWriter;
@@ -279,7 +281,7 @@ public class ServerImpl {
 		// 响应
 		HttpResponse httpResponse = new HttpResponse();
 		
-		Exchange(Socket clientSocket, String protocol) throws IOException {
+		Exchange(Socket clientSocket, String protocol) {
 			this.clientSocket = clientSocket;
 			this.protocol = protocol;
 		}
@@ -309,38 +311,32 @@ public class ServerImpl {
 					response.setCode(Code.HTTP_INTERNAL_ERROR);
 					response.setStatus(Code.msg(Code.HTTP_INTERNAL_ERROR));
 					printWriter.println(response);
-					System.err.println("error response: " + response);
+					logger.warn("error response: {}", response);
 				}
 				
 				URI requestUrl = new URI(httpRequest.getRequestURI());
 				this.ctx = ServerImpl.this.contexts.findContext(this.protocol, requestUrl.getPath());
 				if (this.ctx == null) {
-					// todo
-					this.reject(404, "404", "No context found for request");
+					this.reject(Code.HTTP_NOT_FOUND, Code.msg(Code.HTTP_NOT_FOUND), "No context found for request");
 					return;
 				}
 				if (this.ctx.getHandler() == null) {
-					this.reject(500, "500", "No handler for context");
+					this.reject(Code.HTTP_INTERNAL_ERROR, Code.msg(Code.HTTP_INTERNAL_ERROR), "No handler for " +
+							                                                                          "context");
 					return;
 				}
-				//// 执行context =====
-				//this.ctx.getHandler().handle(clientSocket);
+				// ===== 执行context =====
 				this.ctx.getHandler().handle(httpRequest, httpResponse);
-				//// 执行具体逻辑
-				//handle(httpRequest, httpResponse);
 				// 判断响应结果
 				judgeHttpResponse(httpResponse);
-				// 返回响应结果
-				//printWriter.println(httpResponse);
-				//printWriter.flush();
-				// todo 响应流内容的输出
-				sendReply(200, true, httpResponse.getResponseBody());
+				// 返回响应结果 todo
+				// 响应流内容的输出
+				sendReply(Code.HTTP_OK, false, httpResponse.getResponseBody());
 			} catch (Exception e) {
 				HttpResponse response = HttpResponseBuilder.build2Response(httpRequest, e.toString());
 				response.setCode(Code.HTTP_INTERNAL_ERROR);
 				response.setStatus(Code.msg(Code.HTTP_INTERNAL_ERROR));
-				System.err.println("error response: " + response);
-				e.printStackTrace();
+				logger.warn("error response:  {}", e.toString());
 			} finally {
 				try {
 					clientSocket.close();
@@ -360,43 +356,58 @@ public class ServerImpl {
 		
 		void reject(int httpCode, String var2, String var3) throws IOException {
 			this.rejected = true;
-			this.sendReply(httpCode, false, "<h1>" + httpCode + var2 + "</h1>" + var3);
+			this.sendReply(httpCode, false, "<h1>" + httpCode + " " + var2 + "</h1>" + var3);
 			this.clientSocket.close();
 		}
 		
-		// 重写 TODO
-		void sendReply(int httpCode, boolean var2, String var3) {
+		
+		/**
+		 * 响应结果
+		 * <p>
+		 * 重写 TODO
+		 *
+		 * @param httpCode
+		 * 		状态码
+		 * @param isConnClosed
+		 * 		是否关闭客户端服务器之间的长连接
+		 * @param responseBody
+		 * 		响应结果
+		 */
+		void sendReply(int httpCode, boolean isConnClosed, String responseBody) {
 			try {
 				StringBuilder stringBuilder = new StringBuilder(512);
-				//var4.append("HTTP/1.1 ").append(httpCode).append(httpCode).append("\r\n");
-				stringBuilder.append("HTTP/1.1 ").append(httpCode).append(" ").append(Code.msg(httpCode)).append("\r\n");
-				if (var3 != null && var3.length() != 0) {
-					stringBuilder.append("Content-Length: ").append(var3.length()).append("\r\n").append("Content-Type"
-							                                                                                     + ": "
-							                                                                                     +
-							                                                                                     "text"
-							                                                                                     +
-							                                                                                     "/html\r" + "\n");
+				stringBuilder.append("HTTP/1.1 ");
+				stringBuilder.append(httpCode);
+				stringBuilder.append(" ");
+				stringBuilder.append(Code.msg(httpCode)).append("\r\n");
+				if (responseBody != null && responseBody.length() != 0) {
+					stringBuilder.append("Content-Length: ");
+					stringBuilder.append(CharsetLengthUtils.getWordCountCharset(responseBody,
+					                                                            GlobalConfig.GLOBAL_ENCODING));
+					stringBuilder.append("\r\n");
+					stringBuilder.append("Content-Type: ");
+					stringBuilder.append("text/html;charset=");
+					stringBuilder.append(GlobalConfig.GLOBAL_ENCODING);
+					stringBuilder.append("\r\n");
 				} else {
 					stringBuilder.append("Content-Length: 0\r\n");
-					var3 = "";
+					responseBody = "";
 				}
 				
-				if (var2) {
+				if (isConnClosed) {
 					stringBuilder.append("Connection: close\r\n");
 				}
 				
-				stringBuilder.append("\r\n").append(var3);
-				String responseString = stringBuilder.toString();
-				//byte[] var6 = var5.getBytes("ISO8859_1");
-				//byte[] var6 = var5.getBytes("UTF-8");
-				this.printWriter.print(responseString);
+				stringBuilder.append("\r\n");
+				stringBuilder.append(responseBody);
+				stringBuilder.append("\r\n");
+				this.printWriter.print(stringBuilder.toString());
 				this.printWriter.flush();
-				if (var2) {
+				if (isConnClosed) {
 					this.clientSocket.close();
 				}
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error("error response: {}", e.toString());
 			}
 			
 		}

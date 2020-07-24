@@ -1,5 +1,10 @@
 package com.example.fjp.httpserver.v1.request;
 
+import com.example.fjp.httpserver.v1.core.HttpExchange;
+import com.example.fjp.httpserver.v1.response.HttpResponse;
+
+import java.io.IOException;
+
 /**
  * @FileName: HttpHandler
  * @Author: fjp
@@ -10,8 +15,10 @@ package com.example.fjp.httpserver.v1.request;
  * fjp           2020/7/16           版本号
  */
 @SuppressWarnings("ALL")
-interface HttpHandler {
-	// todo
+public interface HttpHandler {
+	
+	void handle(HttpRequest httpRequest, HttpResponse httpResponse) throws IOException;
+	
 	//void handle(HttpExchange httpExchange) throws IOException;
 	//
 	///**
@@ -34,7 +41,8 @@ interface HttpHandler {
 	//	//	httpResponse = new HttpResponse();
 	//	//
 	//	//	String method = httpRequest.getMethod();
-	//	//	if (Stream.of(HttpMethod.GET, HttpMethod.POST, HttpMethod.PUT, HttpMethod.DELETE, HttpMethod.HEAD).noneMatch(method::equals)) {
+	//	//	if (Stream.of(HttpMethod.GET, HttpMethod.POST, HttpMethod.PUT, HttpMethod.DELETE, HttpMethod.HEAD)
+	//	.noneMatch(method::equals)) {
 	//	//		//	响应一个不支持的方法的提示 todo
 	//	//		HttpResponse response = HttpResponseBuilder.build2Response(null, "不支持的请求方法!");
 	//	//		response.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());

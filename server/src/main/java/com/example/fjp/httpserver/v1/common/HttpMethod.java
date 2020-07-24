@@ -14,55 +14,52 @@ public enum HttpMethod {
 	/**
 	 * 向服务器请求一个文件
 	 */
-	GET,
+	GET("GET"),
 	/**
 	 * 向服务器发送数据让服务器处理
 	 */
-	POST,
+	POST("POST"),
 	/**
 	 * 向服务器方式数据并存储在服务器
 	 */
-	PUT,
+	PUT("PUT"),
 	/**
 	 * 检查一个对象是否存在
 	 */
-	HEAD,
+	HEAD("HEAD"),
 	/**
 	 * 从服务器上删除一个文件
 	 */
-	DELETE,
+	DELETE("DELETE"),
 	/**
 	 * 对通道提供支持
 	 */
-	CONNECT,
+	CONNECT("CONNECT"),
 	/**
 	 * 跟踪到服务器的路径
 	 */
-	TRACE,
+	TRACE("TRACE"),
 	/**
 	 * 查询服务器的性能
 	 */
-	OPTIONS;
+	OPTIONS("OPTIONS");
 	
 	/**
 	 * 方法名称
 	 */
-	private String method;
+	private String name;
+	
+	HttpMethod(String name) {
+		this.name = name;
+	}
 	
 	/**
 	 * 获取 方法名称
 	 *
-	 * @return method 方法名称
+	 * @return name 方法名称
 	 */
-	public String getMethod() {
-		return this.method;
+	public String getName() {
+		return this.name;
 	}
 	
-	/**
-	 * 设置 方法名称
-	 *
-	 * @param method 方法名称
-	 */
-	public void setMethod(String method) {
-		this.method = method;
-	}}
+}

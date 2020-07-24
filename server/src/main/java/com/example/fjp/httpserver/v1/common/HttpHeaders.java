@@ -16,6 +16,7 @@ import java.util.Map;
  * <author>          <time>          <version>
  * fjp           2020/7/16           版本号
  */
+@SuppressWarnings("ALL")
 public class HttpHeaders {
 	private Map<String, String> headers = new HashMap<>(8);
 	
@@ -80,7 +81,6 @@ public class HttpHeaders {
 	}
 	
 	public void setHeaders(Map<String, String> headers) {
-		//throw new UnsupportedOperationException("headers is immutable!");
 		//map执行赋值操作
 		setHost(headers.get("Host"));
 		setConnection(headers.get("Connection"));
@@ -284,13 +284,11 @@ public class HttpHeaders {
 				if (charArray[0] >= 'a' && charArray[0] <= 'z') {
 					charArray[0] = (char) (charArray[0] - 32);
 				}
-				
-				for (int var4 = 1; var4 < charLength; ++var4) {
-					if (charArray[var4] >= 'A' && charArray[var4] <= 'Z') {
-						charArray[var4] = (char) (charArray[var4] + 32);
+				for (int i = 1; i < charLength; ++i) {
+					if (charArray[i] >= 'A' && charArray[i] <= 'Z') {
+						charArray[i] = (char) (charArray[i] + 32);
 					}
 				}
-				
 				return new String(charArray);
 			}
 		}

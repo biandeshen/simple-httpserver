@@ -1,7 +1,7 @@
 package com.example.fjp.httpserver.v1.core;
 
 
-import com.example.fjp.httpserver.v1.request.AbstractHttpHandler;
+import com.example.fjp.httpserver.v1.request.HttpHandler;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -61,7 +61,7 @@ public abstract class AbstractHttpServer {
 	
 	}
 	
-	public HttpContext createContext(String s, AbstractHttpHandler httpHandler) {
+	public HttpContext createContext(String s, HttpHandler httpHandler) {
 		return null;
 	}
 	
