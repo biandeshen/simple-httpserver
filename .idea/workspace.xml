@@ -1,29 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cefa1342-d80f-4d30-9bb4-85a662f383db" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/CharsetLengthUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/config/GlobalConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/logback.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/server.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="cefa1342-d80f-4d30-9bb4-85a662f383db" name="Default Changelist" comment="v1 0.0.3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/TestServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/TestServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/Code.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/Code.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpHeaders.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpHeaders.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/AbstractHttpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/AbstractHttpServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/HttpContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/HttpContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/HttpContextImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/HttpContextImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/HttpServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/HttpServerImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/request/AbstractHttpHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/request/DefaultHttpAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/request/HttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/request/HttpHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/response/HttpResponseBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/response/HttpResponseBuilder.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -49,16 +32,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="198" column="27" selection-start-line="198" selection-start-column="27" selection-end-line="198" selection-end-column="27" />
+            <state relative-caret-position="486">
+              <caret line="38" column="30" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#6442#6443#0" expanded="true" />
                 <element signature="e#6464#6465#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/jre/lib/rt.jar!/sun/net/httpserver/ServerImpl.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="766" column="38" selection-start-line="766" selection-start-column="38" selection-end-line="766" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -75,12 +67,21 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/pom.xml">
           <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="34" column="21" lean-forward="true" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+            <state relative-caret-position="144">
+              <caret line="6" column="50" lean-forward="true" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpMethod.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -89,47 +90,18 @@
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="34" selection-start-line="34" selection-end-line="34" />
+            <state relative-caret-position="127">
+              <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/net/InetSocketAddress.java">
+        <entry file="file://$PROJECT_DIR$/client/pom.xml">
+          <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-88">
-              <caret line="136" column="58" selection-start-line="136" selection-start-column="52" selection-end-line="136" selection-end-column="58" />
-              <folding>
-                <element signature="e#10984#10985#0" expanded="true" />
-                <element signature="e#11026#11027#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/HttpServerImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="55" column="35" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/HttpContextImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1646#1647#0" expanded="true" />
-                <element signature="e#1672#1673#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="168">
+              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -158,9 +130,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>var2</find>
-      <find>DefaultHttpAdapter</find>
-      <find>HttpHandler</find>
       <find>HttpContext</find>
       <find>var13</find>
       <find>H</find>
@@ -188,6 +157,9 @@
       <find>system</find>
       <find>created</find>
       <find>context created</find>
+      <find>none</find>
+      <find>0</find>
+      <find>[0]</find>
     </findStrings>
     <replaceStrings>
       <replace>path</replace>
@@ -230,15 +202,12 @@
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/request/HttpRequest.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/v1/TestServer.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/SimpleHttpServerX.java" />
-        <option value="$PROJECT_DIR$/client/pom.xml" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/CodeLengthUtils.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/response/HttpResponseBuilder.java" />
         <option value="$PROJECT_DIR$/server/src/main/resources/server.yml" />
         <option value="$PROJECT_DIR$/server/src/main/resources/log.properties" />
         <option value="$PROJECT_DIR$/server/src/main/resources/server.properties" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/config/GlobalConfig.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/server/pom.xml" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/CharsetLengthUtils.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/Code.java" />
         <option value="$PROJECT_DIR$/server/src/main/resources/logback.xml" />
@@ -253,6 +222,9 @@
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/TestServer.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/request/HttpHandler.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java" />
+        <option value="$PROJECT_DIR$/server/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/client/pom.xml" />
       </list>
     </option>
   </component>
@@ -290,8 +262,8 @@
     <option name="jreName" value="#JAVA_HOME" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1723" />
-    <option name="y" value="103" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1616" />
     <option name="height" value="916" />
   </component>
@@ -508,7 +480,7 @@
       <workItem from="1594782716484" duration="1837000" />
       <workItem from="1594797950972" duration="57789000" />
       <workItem from="1595465983100" duration="20921000" />
-      <workItem from="1595553976304" duration="14438000" />
+      <workItem from="1595553976304" duration="22363000" />
     </task>
     <task id="LOCAL-00001" summary="v1 版本已基本实现功能，此处提交用以保存已注释文件，下次提交删除注释部分，并打磨不足之处">
       <created>1595486149707</created>
@@ -531,14 +503,21 @@
       <option name="project" value="LOCAL" />
       <updated>1595491990889</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="v1 0.0.3 版本已基本实现功能，解决了乱码问题">
+      <created>1595578461908</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1595578461908</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94985000" />
+    <option name="totallyTimeSpent" value="102910000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1592" y="-8" width="1616" height="916" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.20437019" />
@@ -548,13 +527,13 @@
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32833788" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34877384" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3174387" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3065395" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="FindBugs-IDEA" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.17847411" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.31062672" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32970026" />
       <window_info anchor="bottom" id="SonarLint" order="11" />
@@ -583,7 +562,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="v1 版本已基本实现功能，此处提交用以保存已注释文件，下次提交删除注释部分，并打磨不足之处" />
     <MESSAGE value="v1 0.0.2 版本已基本实现功能，删除注释部分，并将打磨不足之处" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1 0.0.2 版本已基本实现功能，删除注释部分，并将打磨不足之处" />
+    <MESSAGE value="v1 0.0.3 版本已基本实现功能，解决了乱码问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1 0.0.3 版本已基本实现功能，解决了乱码问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -632,23 +612,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/jre/lib/rt.jar!/sun/net/httpserver/Code.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-          <folding>
-            <element signature="e#0#4187#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/jre/lib/rt.jar!/com/sun/net/httpserver/HttpsServer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/io/OutputStream.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -740,17 +703,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/jre/lib/rt.jar!/sun/net/httpserver/ServerImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="761" selection-start-line="761" selection-end-line="761" />
-          <folding>
-            <element signature="e#13408#13409#0" expanded="true" />
-            <element signature="e#13442#13443#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/response/HttpResponse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="511">
@@ -816,14 +768,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="139" column="9" selection-start-line="139" selection-start-column="9" selection-end-line="139" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
@@ -930,19 +874,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="32" column="10" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="10" />
-          <folding>
-            <element signature="e#635#636#0" expanded="true" />
-            <element signature="e#662#663#0" expanded="true" />
-            <element signature="e#794#795#0" expanded="true" />
-            <element signature="e#817#818#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/request/DefaultHttpAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
@@ -1025,16 +956,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/DefaultHttpServerProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="64" column="38" selection-start-line="64" selection-start-column="38" selection-end-line="64" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/TestServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="257">
@@ -1055,22 +976,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="34" column="21" lean-forward="true" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/net/InetAddress.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
@@ -1082,15 +987,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/DefaultHttpServerProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="64" column="38" selection-start-line="64" selection-start-column="38" selection-end-line="64" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/common/HttpMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/lang/Throwable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-14387">
+          <caret line="113" column="13" selection-start-line="113" selection-start-column="13" selection-end-line="113" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/lang/Exception.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="44" column="36" lean-forward="true" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/jre/lib/rt.jar!/sun/net/httpserver/ServerImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="766" column="38" selection-start-line="766" selection-start-column="38" selection-end-line="766" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/main/java/com/example/fjp/httpserver/v1/core/ServerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="198" column="27" selection-start-line="198" selection-start-column="27" selection-end-line="198" selection-end-column="27" />
+        <state relative-caret-position="486">
+          <caret line="38" column="30" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#6442#6443#0" expanded="true" />
             <element signature="e#6464#6465#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" column="50" lean-forward="true" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
         </state>
       </provider>
     </entry>

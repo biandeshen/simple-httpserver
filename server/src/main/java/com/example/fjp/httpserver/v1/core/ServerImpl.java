@@ -331,12 +331,17 @@ public class ServerImpl {
 				judgeHttpResponse(httpResponse);
 				// 返回响应结果 todo
 				// 响应流内容的输出
-				sendReply(Code.HTTP_OK, false, httpResponse.getResponseBody());
+				sendReply(httpResponse.getCode(), false, httpResponse.getResponseBody());
 			} catch (Exception e) {
-				HttpResponse response = HttpResponseBuilder.build2Response(httpRequest, e.toString());
+				HttpResponse response = HttpResponseBuilder.build2Response(httpRequest, e.getMessage());
 				response.setCode(Code.HTTP_INTERNAL_ERROR);
 				response.setStatus(Code.msg(Code.HTTP_INTERNAL_ERROR));
-				logger.warn("error response:  {}", e.toString());
+				try {
+					reject(response.getCode(), response.getStatus(), response.getResponseBody());
+				} catch (IOException e1) {
+					//	todo
+				}
+				logger.error("error response:  {}", e);
 			} finally {
 				try {
 					clientSocket.close();
@@ -354,9 +359,9 @@ public class ServerImpl {
 			}
 		}
 		
-		void reject(int httpCode, String var2, String var3) throws IOException {
+		void reject(int httpCode, String httpStatus, String respStr) throws IOException {
 			this.rejected = true;
-			this.sendReply(httpCode, false, "<h1>" + httpCode + " " + var2 + "</h1>" + var3);
+			this.sendReply(httpCode, false, "<h1>" + httpCode + " " + httpStatus + "</h1><p/><hr/>" + respStr);
 			this.clientSocket.close();
 		}
 		
