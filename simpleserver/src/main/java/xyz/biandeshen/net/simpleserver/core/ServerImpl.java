@@ -1,16 +1,16 @@
-package com.example.fjp.httpserver.v1.core;
+package xyz.biandeshen.net.simpleserver.core;
 
 
-import com.example.fjp.httpserver.v1.common.CharsetLengthUtils;
-import com.example.fjp.httpserver.v1.common.Code;
-import com.example.fjp.httpserver.v1.config.GlobalConfig;
-import com.example.fjp.httpserver.v1.request.HttpHandler;
-import com.example.fjp.httpserver.v1.request.HttpRequest;
-import com.example.fjp.httpserver.v1.request.HttpRequestParse;
-import com.example.fjp.httpserver.v1.response.HttpResponse;
-import com.example.fjp.httpserver.v1.response.HttpResponseBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import xyz.biandeshen.net.simpleserver.common.StatusCode;
+import xyz.biandeshen.net.simpleserver.request.HttpHandler;
+import xyz.biandeshen.net.simpleserver.request.HttpRequest;
+import xyz.biandeshen.net.simpleserver.request.HttpRequestParse;
+import xyz.biandeshen.net.simpleserver.response.HttpResponse;
+import xyz.biandeshen.net.simpleserver.response.HttpResponseBuilder;
+import xyz.biandeshen.net.simpleserver.util.CharsetLengthUtils;
+import xyz.biandeshen.net.simpleserver.util.GlobalPropertiesUtil;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -34,6 +34,7 @@ import java.util.stream.Stream;
 @SuppressWarnings("ALL")
 public class ServerImpl {
 	private static final Logger logger = LoggerFactory.getLogger(ServerImpl.class);
+	private static final String DEFAULT_CHARSET_NAME = GlobalPropertiesUtil.getProperty("global-encoding");
 	
 	private String protocol;
 	private Executor executor;
@@ -47,7 +48,7 @@ public class ServerImpl {
 	private boolean started = false;
 	
 	
-	private AbstractHttpServer wrapper;
+	private HttpServer wrapper;
 	
 	/**
 	 * bootstrapExecutor
@@ -74,8 +75,7 @@ public class ServerImpl {
 	
 	ServerImpl.Dispatcher dispatcher;
 	
-	public ServerImpl(AbstractHttpServer httpServer, String protocol, InetSocketAddress inetSocketAddress,
-	                  int backLog) {
+	public ServerImpl(HttpServer httpServer, String protocol, InetSocketAddress inetSocketAddress, int backLog) {
 		this.protocol = protocol;
 		this.wrapper = httpServer;
 		this.https = protocol.equalsIgnoreCase("https");
@@ -104,7 +104,7 @@ public class ServerImpl {
 	}
 	
 	
-	public AbstractHttpServer getWrapper() {
+	public HttpServer getWrapper() {
 		return this.wrapper;
 	}
 	
@@ -310,8 +310,8 @@ public class ServerImpl {
 				if (Stream.of("GET", "POST", "PUT", "DELETE", "HEAD").noneMatch(method::equals)) {
 					//	响应一个不支持的方法的提示
 					HttpResponse response = HttpResponseBuilder.build2Response(httpRequest, "不支持的请求方法!");
-					response.setCode(Code.HTTP_INTERNAL_ERROR);
-					response.setStatus(Code.msg(Code.HTTP_INTERNAL_ERROR));
+					response.setCode(StatusCode.HTTP_INTERNAL_ERROR);
+					response.setStatus(StatusCode.msg(StatusCode.HTTP_INTERNAL_ERROR));
 					printWriter.println(response);
 					logger.warn("error response: {}", response);
 				}
@@ -319,12 +319,12 @@ public class ServerImpl {
 				URI requestUrl = new URI(httpRequest.getRequestURI());
 				this.ctx = ServerImpl.this.contexts.findContext(this.protocol, requestUrl.getPath());
 				if (this.ctx == null) {
-					this.reject(Code.HTTP_NOT_FOUND, Code.msg(Code.HTTP_NOT_FOUND), "No context found for request");
+					this.reject(StatusCode.HTTP_NOT_FOUND, StatusCode.msg(StatusCode.HTTP_NOT_FOUND), "No context " +
+							                                                                                  "found " + "for " + "request");
 					return;
 				}
 				if (this.ctx.getHandler() == null) {
-					this.reject(Code.HTTP_INTERNAL_ERROR, Code.msg(Code.HTTP_INTERNAL_ERROR), "No handler for " +
-							                                                                          "context");
+					this.reject(StatusCode.HTTP_INTERNAL_ERROR, StatusCode.msg(StatusCode.HTTP_INTERNAL_ERROR), "No handler for " + "context");
 					return;
 				}
 				// ===== 执行context =====
@@ -336,8 +336,8 @@ public class ServerImpl {
 				sendReply(httpResponse.getCode(), false, httpResponse.getResponseBody());
 			} catch (Exception e) {
 				HttpResponse response = HttpResponseBuilder.build2Response(httpRequest, e.getMessage());
-				response.setCode(Code.HTTP_INTERNAL_ERROR);
-				response.setStatus(Code.msg(Code.HTTP_INTERNAL_ERROR));
+				response.setCode(StatusCode.HTTP_INTERNAL_ERROR);
+				response.setStatus(StatusCode.msg(StatusCode.HTTP_INTERNAL_ERROR));
 				try {
 					reject(response.getCode(), response.getStatus(), response.getResponseBody());
 				} catch (IOException e1) {
@@ -356,8 +356,8 @@ public class ServerImpl {
 		void judgeHttpResponse(HttpResponse httpResponse) {
 			// 进行判空操作 即未设置状态码时，默认成功
 			if (httpResponse.getStatus() != null || httpResponse.getCode() == 0) {
-				httpResponse.setCode(Code.HTTP_OK);
-				httpResponse.setStatus(Code.msg(Code.HTTP_OK));
+				httpResponse.setCode(StatusCode.HTTP_OK);
+				httpResponse.setStatus(StatusCode.msg(StatusCode.HTTP_OK));
 			}
 		}
 		
@@ -386,15 +386,14 @@ public class ServerImpl {
 				stringBuilder.append("HTTP/1.1 ");
 				stringBuilder.append(httpCode);
 				stringBuilder.append(" ");
-				stringBuilder.append(Code.msg(httpCode)).append("\r\n");
+				stringBuilder.append(StatusCode.msg(httpCode)).append("\r\n");
 				if (responseBody != null && responseBody.length() != 0) {
 					stringBuilder.append("Content-Length: ");
-					stringBuilder.append(CharsetLengthUtils.getWordCountCharset(responseBody,
-					                                                            GlobalConfig.GLOBAL_ENCODING));
+					stringBuilder.append(CharsetLengthUtils.getWordCountCharset(responseBody, DEFAULT_CHARSET_NAME));
 					stringBuilder.append("\r\n");
 					stringBuilder.append("Content-Type: ");
 					stringBuilder.append("text/html;charset=");
-					stringBuilder.append(GlobalConfig.GLOBAL_ENCODING);
+					stringBuilder.append(DEFAULT_CHARSET_NAME);
 					stringBuilder.append("\r\n");
 				} else {
 					stringBuilder.append("Content-Length: 0\r\n");
