@@ -69,7 +69,7 @@ public enum HttpMethod {
 	 * @return 对应的 {@code HttpMethod} ，或 {@code null} (如果没有找到)
 	 */
 	public static HttpMethod resolve(String method) {
-		return (method != null ? mappings.get(method) : null);
+		return (method != null ? mappings.get(method.toUpperCase()) : null);
 	}
 	
 	/**

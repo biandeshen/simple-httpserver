@@ -3,23 +3,28 @@ package xyz.biandeshen.net.simpleserver.core;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xyz.biandeshen.net.simpleserver.common.StatusCode;
-import xyz.biandeshen.net.simpleserver.request.HttpHandler;
-import xyz.biandeshen.net.simpleserver.request.HttpRequest;
-import xyz.biandeshen.net.simpleserver.request.HttpRequestParse;
-import xyz.biandeshen.net.simpleserver.response.HttpResponse;
-import xyz.biandeshen.net.simpleserver.response.HttpResponseBuilder;
-import xyz.biandeshen.net.simpleserver.util.CharsetLengthUtils;
+import xyz.biandeshen.net.simpleserver.common.HttpHandler;
+import xyz.biandeshen.net.simpleserver.common.HttpStatus;
+import xyz.biandeshen.net.simpleserver.common.request.HttpRequest;
+import xyz.biandeshen.net.simpleserver.common.request.HttpRequestParser;
+import xyz.biandeshen.net.simpleserver.common.request.SimpleHttpRequest;
+import xyz.biandeshen.net.simpleserver.common.response.HttpResponse;
+import xyz.biandeshen.net.simpleserver.common.response.SimpleHttpResponse;
+import xyz.biandeshen.net.simpleserver.config.GlobalConfig;
 import xyz.biandeshen.net.simpleserver.util.GlobalPropertiesUtil;
 
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.*;
+import java.nio.ByteBuffer;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.concurrent.*;
-import java.util.concurrent.ThreadPoolExecutor.AbortPolicy;
 import java.util.stream.Stream;
 
 /**
@@ -41,22 +46,23 @@ public class ServerImpl {
 	private boolean https;
 	private ContextList contexts;
 	private InetSocketAddress address;
-	private ServerSocket serverSocket;
-	
+	private ServerSocketChannel schan;
+	private Selector selector;
+	private SelectionKey listenerKey;
 	private volatile boolean finished = false;
 	private volatile boolean terminating = false;
 	private boolean started = false;
-	
 	
 	private HttpServer wrapper;
 	
 	/**
 	 * bootstrapExecutor
 	 */
-	private static ExecutorService bootstrapExecutor = new ThreadPoolExecutor(1, 1, Integer.MAX_VALUE,
-	                                                                          TimeUnit.SECONDS,
-	                                                                          new LinkedBlockingQueue<>(1024),
-	                                                                          new AbortPolicy());
+	private static final ExecutorService BOOTSTRAPEXECUTOR = new ThreadPoolExecutor(1, 1, Integer.MAX_VALUE,
+	                                                                                TimeUnit.SECONDS,
+	                                                                                new LinkedBlockingQueue<>(1024),
+	                                                                                (ThreadFactory) Thread::new);
+	
 	
 	/**
 	 * 是否已经绑定端口号
@@ -75,33 +81,30 @@ public class ServerImpl {
 	
 	ServerImpl.Dispatcher dispatcher;
 	
-	public ServerImpl(HttpServer httpServer, String protocol, InetSocketAddress inetSocketAddress, int backLog) {
+	public ServerImpl(HttpServer httpServer, String protocol, InetSocketAddress inetSocketAddress, int backLog) throws IOException {
 		this.protocol = protocol;
 		this.wrapper = httpServer;
 		this.https = protocol.equalsIgnoreCase("https");
 		this.address = inetSocketAddress;
 		// Contexts
 		this.contexts = new ContextList();
-		// ServerSocket
-		try {
-			this.serverSocket = new ServerSocket();
-			if (inetSocketAddress != null) {
-				this.bind(inetSocketAddress, backLog);
-				this.isBound = true;
-			}
-			this.isCreated = true;
-		} catch (IOException e) {
-			logger.error("serverImpl created failed: {}", e.toString());
-			System.exit(1);
+		// ServerSocketChannel
+		this.schan = ServerSocketChannel.open();
+		if (address != null) {
+			ServerSocket serverSocket = this.schan.socket();
+			serverSocket.bind(address, backLog);
+			this.isBound = true;
 		}
-		//
+		this.selector = Selector.open();
+		this.schan.configureBlocking(false);
+		this.listenerKey = this.schan.register(this.selector, 16);
+		// 监听程序
 		this.dispatcher = new ServerImpl.Dispatcher();
-		//	Timer todo
-		//	event todo
-		logger.info("HttpServer created in protocol:{}  ip:{}  port:{}", protocol, inetSocketAddress.getAddress(),
+		logger.info("HttpServer created in protocol:{}  ip:{}  port:{}", protocol, InetAddress.getLocalHost(),
 		            inetSocketAddress.getPort());
-		
 	}
+	
+	private static Thread newThread(Runnable threadFactory) {return new Thread();}
 	
 	
 	public HttpServer getWrapper() {
@@ -114,8 +117,7 @@ public class ServerImpl {
 		} else if (inetSocketAddress == null) {
 			throw new NullPointerException("null address");
 		} else {
-			ServerSocket serverSocket = this.serverSocket;
-			serverSocket.bind(inetSocketAddress, backLog);
+			this.schan.bind(inetSocketAddress, backLog);
 			this.isBound = true;
 		}
 	}
@@ -128,7 +130,7 @@ public class ServerImpl {
 				this.executor = new ServerImpl.DefaultExecutor();
 			}
 			// 启用监听及转发线程
-			bootstrapExecutor.execute(this.dispatcher);
+			BOOTSTRAPEXECUTOR.execute(this.dispatcher);
 			this.started = true;
 		} else {
 			throw new IllegalStateException("server in wrong state");
@@ -154,16 +156,16 @@ public class ServerImpl {
 			this.terminating = true;
 			
 			try {
-				this.serverSocket.close();
-				isBound = false;
-				isCreated = false;
-				isClosed = true;
+				this.schan.close();
+				//isBound = false;
+				//isCreated = false;
+				//isClosed = true;
 			} catch (IOException var8) {
-				isBound = false;
-				isCreated = false;
-				isClosed = true;
+				//isBound = false;
+				//isCreated = false;
+				//isClosed = true;
 			}
-			
+			this.selector.wakeup();
 			long delayTime = System.currentTimeMillis() + (long) (seconds * 1000);
 			while (System.currentTimeMillis() < delayTime) {
 				this.delay();
@@ -225,12 +227,7 @@ public class ServerImpl {
 	}
 	
 	public InetSocketAddress getAddress() {
-		return AccessController.doPrivileged(new PrivilegedAction<InetSocketAddress>() {
-			@Override
-			public InetSocketAddress run() {
-				return (InetSocketAddress) ServerImpl.this.serverSocket.getLocalSocketAddress();
-			}
-		});
+		return AccessController.doPrivileged((PrivilegedAction<InetSocketAddress>) () -> (InetSocketAddress) ServerImpl.this.schan.socket().getLocalSocketAddress());
 	}
 	
 	private static class DefaultExecutor implements Executor {
@@ -251,171 +248,157 @@ public class ServerImpl {
 		public void run() {
 			while (!ServerImpl.this.finished) {
 				try {
-					while (!isClosed || isCreated || !isBound) {
-						if (!ServerImpl.this.terminating) {
-							// 监听要建立到这个套接字的连接并接受它。该方法将阻塞，直到建立连接为止。
-							Socket clientSocket = ServerImpl.this.serverSocket.accept();
-							// 以此套接字连接构造为一个定义好处理逻辑的Runnable，并交由线程池执行
-							this.handle(clientSocket);
+					ServerImpl.this.selector.select(1000L);
+					Set<SelectionKey> readyKeys = ServerImpl.this.selector.selectedKeys();
+					Iterator<SelectionKey> readyIterator = readyKeys.iterator();
+					
+					while (readyIterator.hasNext()) {
+						SelectionKey readyKey = readyIterator.next();
+						if (readyKey.equals(ServerImpl.this.listenerKey)) {
+							if (!ServerImpl.this.terminating) {
+								SocketChannel clientChannel = ServerImpl.this.schan.accept();
+								if (clientChannel != null) {
+									clientChannel.configureBlocking(false);
+									clientChannel.register(ServerImpl.this.selector, 1);
+								}
+							}
+						} else {
+							try {
+								if (readyKey.isReadable()) {
+									SocketChannel clientChannel = (SocketChannel) readyKey.channel();
+									this.handle(clientChannel);
+								} else {
+									assert false;
+								}
+							} catch (IOException e) {
+								this.handleException(readyKey, e);
+							}
 						}
+						readyIterator.remove();
 					}
+					ServerImpl.this.selector.selectNow();
 				} catch (IOException e) {
 					e.printStackTrace();
-					// 后续处理 todo
+					// 后续处理 todo 日志
+					
 				}
+			}
+			
+			try {
+				ServerImpl.this.selector.close();
+			} catch (Exception e) {
 			}
 		}
 		
-		public void handle(Socket clientSocket) {
+		private void handleException(SelectionKey readyKey, IOException e) {
+			// 后续处理 todo 日志
+		}
+		
+		public void handle(SocketChannel clientSocket) throws IOException {
 			ServerImpl.Exchange exchange = ServerImpl.this.new Exchange(clientSocket, ServerImpl.this.protocol);
 			ServerImpl.this.executor.execute(exchange);
 		}
 	}
 	
 	private class Exchange implements Runnable {
-		Socket clientSocket;
-		String protocol;
+		SocketChannel channel;
 		HttpContextImpl ctx;
-		boolean rejected = false;
-		PrintWriter printWriter;
+		//boolean rejected = false;
+		String protocol;
 		// 请求
-		HttpRequest httpRequest = new HttpRequest();
+		HttpRequest httpRequest;
 		// 响应
-		HttpResponse httpResponse = new HttpResponse();
+		HttpResponse httpResponse;
 		
-		Exchange(Socket clientSocket, String protocol) {
-			this.clientSocket = clientSocket;
+		Exchange(SocketChannel clientSocket, String protocol) {
+			this.channel = clientSocket;
 			this.protocol = protocol;
+			httpResponse = new SimpleHttpResponse();
 		}
 		
 		@Override
 		public void run() {
 			try {
-				httpResponse.setOutputStream(clientSocket.getOutputStream());
-				httpRequest.setInputStream(clientSocket.getInputStream());
-				printWriter = new PrintWriter(new OutputStreamWriter(httpResponse.getOutputStream()));
-				httpRequest = HttpRequestParse.parse2HttpRequest(httpRequest.getInputStream());
-				
-				if (httpRequest.getRequestURI() == null) {
-					this.clientSocket.close();
+				//((SimpleHttpResponse) httpResponse).setOutputStream(channel.socket().getOutputStream());
+				httpRequest = HttpRequestParser.parse2HttpRequest(channel);
+				if (((SimpleHttpRequest) httpRequest).getRequestURI() == null) {
+					this.reject(HttpStatus.HTTP_NOT_FOUND, "未找到的请求路径！");
 					return;
 				}
 				
-				if (httpRequest.getProtocol() == null) {
-					this.reject(400, "400", "Bad request line");
+				if (((SimpleHttpRequest) httpRequest).getProtocol() == null) {
+					this.reject(HttpStatus.HTTP_VERSION, "请求协议为空或不支持的HTTP版本，当前仅支持HTTP/1.1");
 					return;
 				}
 				
-				String method = httpRequest.getMethod();
+				String method = ((SimpleHttpRequest) httpRequest).getMethod();
 				if (Stream.of("GET", "POST", "PUT", "DELETE", "HEAD").noneMatch(method::equals)) {
 					//	响应一个不支持的方法的提示
-					HttpResponse response = HttpResponseBuilder.build2Response(httpRequest, "不支持的请求方法!");
-					response.setCode(StatusCode.HTTP_INTERNAL_ERROR);
-					response.setStatus(StatusCode.msg(StatusCode.HTTP_INTERNAL_ERROR));
-					printWriter.println(response);
-					logger.warn("error response: {}", response);
-				}
-				
-				URI requestUrl = new URI(httpRequest.getRequestURI());
-				this.ctx = ServerImpl.this.contexts.findContext(this.protocol, requestUrl.getPath());
-				if (this.ctx == null) {
-					this.reject(StatusCode.HTTP_NOT_FOUND, StatusCode.msg(StatusCode.HTTP_NOT_FOUND), "No context " +
-							                                                                                  "found " + "for " + "request");
+					this.reject(HttpStatus.HTTP_BAD_METHOD, "不支持的请求方法！");
+					logger.warn("error response: Method Not Allowed");
 					return;
 				}
+				
+				URI requestUrl = ((SimpleHttpRequest) httpRequest).getURI();
+				this.ctx = ServerImpl.this.contexts.findContext(this.protocol, requestUrl.getPath());
+				if (this.ctx == null) {
+					this.reject(HttpStatus.HTTP_UNAVAILABLE, "当前协议版本及路径不存在！");
+					return;
+				}
+				
 				if (this.ctx.getHandler() == null) {
-					this.reject(StatusCode.HTTP_INTERNAL_ERROR, StatusCode.msg(StatusCode.HTTP_INTERNAL_ERROR), "No handler for " + "context");
+					this.reject(HttpStatus.HTTP_NOT_IMPLEMENTED, "当前服务未实现！");
 					return;
 				}
 				// ===== 执行context =====
-				this.ctx.getHandler().handle(httpRequest, httpResponse);
-				// 判断响应结果
-				judgeHttpResponse(httpResponse);
-				// 返回响应结果 todo
+				wrapper.getHttpAdapter().handle(this.ctx.getHandler(), httpRequest, httpResponse);
+				
 				// 响应流内容的输出
-				sendReply(httpResponse.getCode(), false, httpResponse.getResponseBody());
+				this.sendReply();
 			} catch (Exception e) {
-				HttpResponse response = HttpResponseBuilder.build2Response(httpRequest, e.getMessage());
-				response.setCode(StatusCode.HTTP_INTERNAL_ERROR);
-				response.setStatus(StatusCode.msg(StatusCode.HTTP_INTERNAL_ERROR));
 				try {
-					reject(response.getCode(), response.getStatus(), response.getResponseBody());
+					this.reject(HttpStatus.HTTP_INTERNAL_ERROR, "服务器内部错误！");
 				} catch (IOException e1) {
 					//	todo
+					e1.printStackTrace();
+					logger.error("error:  ", e1);
 				}
-				logger.error("error response:  {}", e);
+				logger.error("error response:  ", e);
 			} finally {
 				try {
-					clientSocket.close();
+					channel.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
 		}
 		
-		void judgeHttpResponse(HttpResponse httpResponse) {
-			// 进行判空操作 即未设置状态码时，默认成功
-			if (httpResponse.getStatus() != null || httpResponse.getCode() == 0) {
-				httpResponse.setCode(StatusCode.HTTP_OK);
-				httpResponse.setStatus(StatusCode.msg(StatusCode.HTTP_OK));
-			}
+		void reject(int httpCode, String respStr) throws IOException {
+			//this.rejected = true;
+			httpResponse.setHttpStatusCode(httpCode);
+			httpResponse.setHasConectClosed(false);
+			byte[] body;
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append("<h1>");
+			stringBuilder.append(httpCode);
+			stringBuilder.append(" ");
+			stringBuilder.append(HttpStatus.msg(httpCode));
+			stringBuilder.append("</h1><p/><hr/>");
+			stringBuilder.append(respStr);
+			body = stringBuilder.toString().getBytes(GlobalConfig.GLOBAL_CHARSET);
+			httpResponse.getResponseBody().setBody(body);
+			this.sendReply();
 		}
 		
-		void reject(int httpCode, String httpStatus, String respStr) throws IOException {
-			this.rejected = true;
-			this.sendReply(httpCode, false, "<h1>" + httpCode + " " + httpStatus + "</h1><p/><hr/>" + respStr);
-			this.clientSocket.close();
-		}
-		
-		
-		/**
-		 * 响应结果
-		 * <p>
-		 * 重写 TODO
-		 *
-		 * @param httpCode
-		 * 		状态码
-		 * @param isConnClosed
-		 * 		是否关闭客户端服务器之间的长连接
-		 * @param responseBody
-		 * 		响应结果
-		 */
-		void sendReply(int httpCode, boolean isConnClosed, String responseBody) {
-			try {
-				StringBuilder stringBuilder = new StringBuilder(512);
-				stringBuilder.append("HTTP/1.1 ");
-				stringBuilder.append(httpCode);
-				stringBuilder.append(" ");
-				stringBuilder.append(StatusCode.msg(httpCode)).append("\r\n");
-				if (responseBody != null && responseBody.length() != 0) {
-					stringBuilder.append("Content-Length: ");
-					stringBuilder.append(CharsetLengthUtils.getWordCountCharset(responseBody, DEFAULT_CHARSET_NAME));
-					stringBuilder.append("\r\n");
-					stringBuilder.append("Content-Type: ");
-					stringBuilder.append("text/html;charset=");
-					stringBuilder.append(DEFAULT_CHARSET_NAME);
-					stringBuilder.append("\r\n");
-				} else {
-					stringBuilder.append("Content-Length: 0\r\n");
-					responseBody = "";
-				}
-				
-				if (isConnClosed) {
-					stringBuilder.append("Connection: close\r\n");
-				}
-				
-				stringBuilder.append("\r\n");
-				stringBuilder.append(responseBody);
-				stringBuilder.append("\r\n");
-				this.printWriter.print(stringBuilder.toString());
-				this.printWriter.flush();
-				if (isConnClosed) {
-					this.clientSocket.close();
-				}
-			} catch (IOException e) {
-				logger.error("error response: {}", e.toString());
+		void sendReply() throws IOException {
+			if (httpResponse.getResponseLine() == null || httpResponse.getResponseHeader().getHttpHeaders().getHeaders().size() == 0) {
+				logger.error("响应结果状态行或响应头为空！");
 			}
-			
+			httpResponse.judgeHttpResponseFormat();
+			ByteBuffer byteBuffer = httpResponse.getResponseBody().getByteBuffer();
+			while (byteBuffer.hasRemaining()) {
+				channel.write(byteBuffer);
+			}
 		}
 	}
 }

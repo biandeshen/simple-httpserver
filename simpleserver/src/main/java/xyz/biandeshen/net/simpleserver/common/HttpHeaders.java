@@ -1,5 +1,8 @@
 package xyz.biandeshen.net.simpleserver.common;
 
+import xyz.biandeshen.net.simpleserver.util.TimeUtil;
+
+import java.time.ZonedDateTime;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -27,52 +30,15 @@ public class HttpHeaders {
 		this.headers = headers;
 		//map执行赋值操作
 		setHost(headers.get("Host"));
-		setConnection(headers.get("Connection"));
-		setAgent(headers.get("User-Agent"));
+		setUserAgent(headers.get("User-Agent"));
+		setConnection(Boolean.parseBoolean(headers.get(HttpHeader.Connection.getHeaderName())));
 		setAccept(headers.get("Accept"));
-		setCharset(headers.get("Accept-Charset"));
-		setEncoding(headers.get("Accept-Encoding"));
-		setLanguage(headers.get("Accept-Language"));
+		setAcceptCharset(headers.get("Accept-Charset"));
+		setAcceptEncoding(headers.get("Accept-Encoding"));
+		setAcceptLanguage(headers.get("Accept-Language"));
 		setContentLength(Integer.parseInt(headers.getOrDefault("Content-Length", "0")));
+		setContentType(headers.get("Content-Type"));
 	}
-	
-	/**
-	 * 请求的主机信息
-	 */
-	private String host;
-	/**
-	 * Http请求连接状态信息 对应HTTP请求中的Connection
-	 */
-	private String connection;
-	/**
-	 * 代理，用来标识代理的浏览器信息 ,对应HTTP请求中的User-Agent:
-	 */
-	private String agent;
-	/**
-	 * 对应Accept-Language
-	 */
-	private String language;
-	/**
-	 * 对应HTTP请求中的Accept-Encoding
-	 */
-	private String encoding;
-	/**
-	 * 请求的字符编码 对应HTTP请求中的Accept-Charset
-	 */
-	private String charset;
-	/**
-	 * 对应HTTP请求中的Accept
-	 */
-	private String accept;
-	/**
-	 * 对应HTTP请求中的contentLength
-	 */
-	private int contentLength;
-	/**
-	 * 对应HTTP响应中的contentType
-	 */
-	private String contentType;
-	
 	
 	public Map<String, String> getHeaders() {
 		return Collections.synchronizedMap(headers);
@@ -81,14 +47,13 @@ public class HttpHeaders {
 	public void setHeaders(Map<String, String> headers) {
 		//map执行赋值操作
 		setHost(headers.get("Host"));
-		setConnection(headers.get("Connection"));
-		setAgent(headers.get("User-Agent"));
+		setUserAgent(headers.get("User-Agent"));
+		setConnection(Boolean.parseBoolean(headers.get(HttpHeader.Connection.getHeaderName())));
 		setAccept(headers.get("Accept"));
-		setCharset(headers.get("Accept-Charset"));
-		setEncoding(headers.get("Accept-Encoding"));
-		setLanguage(headers.get("Accept-Language"));
+		setAcceptCharset(headers.get("Accept-Charset"));
+		setAcceptEncoding(headers.get("Accept-Encoding"));
+		setAcceptLanguage(headers.get("Accept-Language"));
 		setContentLength(Integer.parseInt(headers.getOrDefault("Content-Length", "0")));
-		
 		setContentType(headers.get("Content-Type"));
 	}
 	
@@ -99,7 +64,7 @@ public class HttpHeaders {
 	 * @return host 请求的主机信息
 	 */
 	public String getHost() {
-		return this.host;
+		return get(HttpHeader.Host.getHeaderName());
 	}
 	
 	/**
@@ -109,7 +74,7 @@ public class HttpHeaders {
 	 * 		请求的主机信息
 	 */
 	public void setHost(String host) {
-		this.host = host;
+		set(HttpHeader.Host.getHeaderName(), host);
 	}
 	
 	/**
@@ -117,8 +82,8 @@ public class HttpHeaders {
 	 *
 	 * @return agent 代理，用来标识代理的浏览器信息 对应HTTP请求中的User-Agent:
 	 */
-	public String getAgent() {
-		return this.agent;
+	public String getUserAgent() {
+		return get(HttpHeader.User_Agent.getHeaderName());
 	}
 	
 	/**
@@ -127,8 +92,8 @@ public class HttpHeaders {
 	 * @param agent
 	 * 		代理，用来标识代理的浏览器信息 对应HTTP请求中的User-Agent:
 	 */
-	public void setAgent(String agent) {
-		this.agent = agent;
+	public void setUserAgent(String agent) {
+		set(HttpHeader.User_Agent.getHeaderName(), agent);
 	}
 	
 	/**
@@ -136,8 +101,8 @@ public class HttpHeaders {
 	 *
 	 * @return language 对应Accept-Language
 	 */
-	public String getLanguage() {
-		return this.language;
+	public String getAcceptLanguage() {
+		return get(HttpHeader.Accept_Language.getHeaderName());
 	}
 	
 	/**
@@ -146,8 +111,8 @@ public class HttpHeaders {
 	 * @param language
 	 * 		对应Accept-Language
 	 */
-	public void setLanguage(String language) {
-		this.language = language;
+	public void setAcceptLanguage(String language) {
+		set(HttpHeader.Accept_Language.getHeaderName(), language);
 	}
 	
 	/**
@@ -155,8 +120,8 @@ public class HttpHeaders {
 	 *
 	 * @return encoding 对应HTTP请求中的Accept-Encoding
 	 */
-	public String getEncoding() {
-		return this.encoding;
+	public String getAcceptEncoding() {
+		return get(HttpHeader.Accept_Encoding.getHeaderName());
 	}
 	
 	/**
@@ -165,8 +130,8 @@ public class HttpHeaders {
 	 * @param encoding
 	 * 		对应HTTP请求中的Accept-Encoding
 	 */
-	public void setEncoding(String encoding) {
-		this.encoding = encoding;
+	public void setAcceptEncoding(String encoding) {
+		set(HttpHeader.Accept_Encoding.getHeaderName(), encoding);
 	}
 	
 	/**
@@ -174,8 +139,8 @@ public class HttpHeaders {
 	 *
 	 * @return charset 请求的字符编码 对应HTTP请求中的Accept-Charset
 	 */
-	public String getCharset() {
-		return this.charset;
+	public String getAcceptCharset() {
+		return get(HttpHeader.Accept_Charset.getHeaderName());
 	}
 	
 	/**
@@ -184,8 +149,8 @@ public class HttpHeaders {
 	 * @param charset
 	 * 		请求的字符编码 对应HTTP请求中的Accept-Charset
 	 */
-	public void setCharset(String charset) {
-		this.charset = charset;
+	public void setAcceptCharset(String charset) {
+		set(HttpHeader.Accept_Charset.getHeaderName(), charset);
 	}
 	
 	/**
@@ -194,7 +159,7 @@ public class HttpHeaders {
 	 * @return accept 对应HTTP请求中的Accept;
 	 */
 	public String getAccept() {
-		return this.accept;
+		return get(HttpHeader.Accept.getHeaderName());
 	}
 	
 	/**
@@ -204,7 +169,7 @@ public class HttpHeaders {
 	 * 		对应HTTP请求中的Accept;
 	 */
 	public void setAccept(String accept) {
-		this.accept = accept;
+		set(HttpHeader.Accept.getHeaderName(), accept);
 	}
 	
 	/**
@@ -213,7 +178,7 @@ public class HttpHeaders {
 	 * @return contentLength 对应HTTP请求中的contentLength
 	 */
 	public int getContentLength() {
-		return this.contentLength;
+		return Integer.parseInt(get(HttpHeader.Content_Length.getHeaderName()));
 	}
 	
 	/**
@@ -223,26 +188,7 @@ public class HttpHeaders {
 	 * 		对应HTTP请求中的contentLength
 	 */
 	public void setContentLength(int contentLength) {
-		this.contentLength = contentLength;
-	}
-	
-	/**
-	 * 获取 Http请求连接状态信息 对应HTTP请求中的Connection
-	 *
-	 * @return connection Http请求连接状态信息 对应HTTP请求中的Connection
-	 */
-	public String getConnection() {
-		return this.connection;
-	}
-	
-	/**
-	 * 设置 Http请求连接状态信息 对应HTTP请求中的Connection
-	 *
-	 * @param connection
-	 * 		Http请求连接状态信息 对应HTTP请求中的Connection
-	 */
-	public void setConnection(String connection) {
-		this.connection = connection;
+		set(HttpHeader.Content_Length.getHeaderName(), String.valueOf(contentLength));
 	}
 	
 	/**
@@ -251,7 +197,7 @@ public class HttpHeaders {
 	 * @return contentType 对应HTTP响应中的contentType
 	 */
 	public String getContentType() {
-		return this.contentType;
+		return get(HttpHeader.Content_Type.getHeaderName());
 	}
 	
 	/**
@@ -261,13 +207,49 @@ public class HttpHeaders {
 	 * 		对应HTTP响应中的contentType
 	 */
 	public void setContentType(String contentType) {
-		this.contentType = contentType;
+		set(HttpHeader.Content_Type.getHeaderName(), contentType);
 	}
-	
 	
 	public String getFirst(String first) {
 		List<String> list = Collections.singletonList(this.headers.get(this.normalize(first)));
 		return list.get(0);
+	}
+	
+	public void setDate(ZonedDateTime torfc822) {
+		set(HttpHeader.Date.getHeaderName(), TimeUtil.toRFC822(torfc822));
+	}
+	
+	public void setDate(String torfc822) {
+		set(HttpHeader.Date.getHeaderName(), TimeUtil.toRFC822(TimeUtil.parseRFC822(torfc822)));
+	}
+	
+	public String getDate() {
+		return get(HttpHeader.Date.getHeaderName());
+	}
+	
+	
+	public void setServer(String server) {
+		set(HttpHeader.Server.getHeaderName(), server);
+	}
+	
+	public String getServer() {
+		return get(HttpHeader.Server.getHeaderName());
+	}
+	
+	public void setConnection(boolean isConnClosed) {
+		set(HttpHeader.Connection.getHeaderName(), String.valueOf(isConnClosed));
+	}
+	
+	public String getConnection() {
+		return get(HttpHeader.Connection.getHeaderName());
+	}
+	
+	public void set(String headerName, String headerValue) {
+		headers.put(headerName, headerValue);
+	}
+	
+	public String get(String headerName) {
+		return headers.get(headerName);
 	}
 	
 	private String normalize(String character) {

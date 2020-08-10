@@ -1,9 +1,12 @@
 package xyz.biandeshen.net.simpleserver;
 
+import xyz.biandeshen.net.simpleserver.common.DefaultHttpAdapter;
+import xyz.biandeshen.net.simpleserver.common.HttpAdapter;
+import xyz.biandeshen.net.simpleserver.common.HttpHandler;
+import xyz.biandeshen.net.simpleserver.common.request.HttpRequest;
+import xyz.biandeshen.net.simpleserver.common.request.SimpleHttpRequest;
+import xyz.biandeshen.net.simpleserver.common.response.HttpResponse;
 import xyz.biandeshen.net.simpleserver.core.HttpServer;
-import xyz.biandeshen.net.simpleserver.request.HttpHandler;
-import xyz.biandeshen.net.simpleserver.request.HttpRequest;
-import xyz.biandeshen.net.simpleserver.response.HttpResponse;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -19,9 +22,11 @@ import java.net.InetSocketAddress;
  */
 public class TestServer {
 	public static void main(String[] args) {
+		HttpServer httpServer = null;
 		try {
-			HttpServer httpServer = HttpServer.create(new InetSocketAddress(9527), 128);
+			httpServer = HttpServer.create(new InetSocketAddress(9527), 128);
 			httpServer.createContext("/test", new TestHandler());
+			//HttpAdapter httpAdapter = new DefaultHttpAdapter();
 			httpServer.start();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -30,8 +35,17 @@ public class TestServer {
 	
 	static class TestHandler implements HttpHandler {
 		@Override
-		public void handle(HttpRequest httpRequest, HttpResponse httpResponse) {
-			httpResponse.setResponseBody("<hr>test handler</hr>");
+		public void handle(HttpRequest httpRequest, HttpResponse httpResponse) throws IOException {
+			httpResponse.getResponseBody().setBody("测试用的处理器！".getBytes());
+			// 测试 multipart/form-data
+			//Map<String, MimeData> mimeMap = httpRequest.getRequestBody().getMimeMap();
+			//for (Entry<String, MimeData> stringMimeDataEntry : mimeMap.entrySet()) {
+			//	System.out.println("stringMimeDataEntry = " + stringMimeDataEntry.getKey()+"\t" + new String
+			//	(stringMimeDataEntry.getValue().getData()));
+			//}
+			// 测试 application/x-www-form-urlencoded
+			String photo = ((SimpleHttpRequest) httpRequest).getParameter("photo");
+			System.out.println("photo = " + photo);
 		}
 	}
 }

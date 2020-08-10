@@ -1,7 +1,7 @@
 package xyz.biandeshen.net.simpleserver.core;
 
 
-import xyz.biandeshen.net.simpleserver.request.HttpHandler;
+import xyz.biandeshen.net.simpleserver.common.HttpHandler;
 
 import java.util.HashMap;
 import java.util.Map;

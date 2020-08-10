@@ -1,7 +1,9 @@
 package xyz.biandeshen.net.simpleserver.core;
 
 
-import xyz.biandeshen.net.simpleserver.request.HttpHandler;
+import xyz.biandeshen.net.simpleserver.common.DefaultHttpAdapter;
+import xyz.biandeshen.net.simpleserver.common.HttpAdapter;
+import xyz.biandeshen.net.simpleserver.common.HttpHandler;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -17,12 +19,13 @@ import java.util.concurrent.Executor;
  */
 public class HttpServerImpl implements HttpServer {
 	ServerImpl server;
+	HttpAdapter httpAdapter;
 	
-	public HttpServerImpl() {
+	public HttpServerImpl() throws IOException {
 		this(new InetSocketAddress(80), 0);
 	}
 	
-	public HttpServerImpl(InetSocketAddress inetSocketAddress, int backLog) {
+	public HttpServerImpl(InetSocketAddress inetSocketAddress, int backLog) throws IOException {
 		this.server = new ServerImpl(this, "http", inetSocketAddress, backLog);
 	}
 	
@@ -74,5 +77,15 @@ public class HttpServerImpl implements HttpServer {
 	@Override
 	public InetSocketAddress getAddress() {
 		return this.server.getAddress();
+	}
+	
+	@Override
+	public void setHttpAdapter(HttpAdapter httpAdapter) {
+		this.httpAdapter = httpAdapter;
+	}
+	
+	@Override
+	public HttpAdapter getHttpAdapter() {
+		return httpAdapter == null ? new DefaultHttpAdapter() : httpAdapter;
 	}
 }

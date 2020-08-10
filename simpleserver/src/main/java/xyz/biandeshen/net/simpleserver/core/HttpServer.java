@@ -1,7 +1,8 @@
 package xyz.biandeshen.net.simpleserver.core;
 
 
-import xyz.biandeshen.net.simpleserver.request.HttpHandler;
+import xyz.biandeshen.net.simpleserver.common.HttpAdapter;
+import xyz.biandeshen.net.simpleserver.common.HttpHandler;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -56,4 +57,9 @@ public interface HttpServer {
 	public void removeContext(HttpContext httpContext);
 	
 	public InetSocketAddress getAddress();
+	
+	public void setHttpAdapter(HttpAdapter httpAdapter);
+	
+	public HttpAdapter getHttpAdapter();
+	
 }

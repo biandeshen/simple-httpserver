@@ -1,4 +1,4 @@
-package xyz.biandeshen.net.simpleserver.common;
+package xyz.biandeshen.net.simpleserver.common.request;
 
 /**
  * @FileName: HttpInputMessage
@@ -8,6 +8,8 @@ package xyz.biandeshen.net.simpleserver.common;
  * <author>          <time>          <version>
  * fjp           2020/7/31           版本号
  */
+
+import xyz.biandeshen.net.simpleserver.common.HttpMessage;
 
 import java.io.IOException;
 import java.io.InputStream;

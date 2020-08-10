@@ -1,9 +1,7 @@
 package xyz.biandeshen.net.simpleserver.config;
 
-import xyz.biandeshen.net.simpleserver.util.GlobalPropertiesUtil;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
+import static xyz.biandeshen.net.simpleserver.util.GlobalPropertiesUtil.getProperty;
 
 /**
  * @FileName: GlobalConfig
@@ -15,7 +13,10 @@ import java.util.Objects;
  * fjp           2020/7/24           版本号
  */
 public class GlobalConfig {
-	//public static String GLOBAL_ENCODING;
+	public static final String GLOBAL_CHARSET;
 	
-	
+	static {
+		// 初始化默认编码
+		GLOBAL_CHARSET = getProperty("global-encoding");
+	}
 }

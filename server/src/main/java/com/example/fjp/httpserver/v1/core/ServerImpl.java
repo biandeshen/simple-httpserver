@@ -35,6 +35,9 @@ import java.util.stream.Stream;
 public class ServerImpl {
 	private static final Logger logger = LoggerFactory.getLogger(ServerImpl.class);
 	
+	/**
+	 * http
+	 */
 	private String protocol;
 	private Executor executor;
 	private boolean https;
